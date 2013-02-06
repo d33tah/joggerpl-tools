@@ -10,12 +10,21 @@ def glowna(request):
     
     tagi = { 
                    'JOG_TITLE': 'Dee\'s weblog',
-                   'ENTRY_SUBJECT': '{{ wpis.tytul }}' 
+                   'HOME': 'http://deetah.jogger.pl/',
+                   'RSS': 'http://deetah.jogger.pl/rss/',
+                   
+                   'ENTRY_SUBJECT': '{{ wpis.subject }}',
+                   'ENTRY_TITLE': '{{ wpis.subject|escape }}',
+                   'ENTRY_ID': '{{ wpis.entry_id }}'
+                    
     }
     
     bezposrednio = { 
                     '<ENTRY_BLOCK>': '{% for wpis in wpisy %}',
-                    '</ENTRY_BLOCK>': '{% endfor %}'
+                    '</ENTRY_BLOCK>': '{% endfor %}',
+    
+                    '<ADMIN_BLOCK>': '{% if admin_mode %}',
+                    '</ADMIN_BLOCK>': '{% endif %}'
     }
     
     for tag in tagi:
@@ -26,8 +35,13 @@ def glowna(request):
         surowy = surowy.replace(tag,bezposrednio[tag])
     
     wpisy = []
-    wpisy += [ Wpis(tytul='testowy') ]
-    wpisy += [ Wpis(tytul='testowy2') ]
+    wpisy += [ Wpis(subject='testowy', entry_id='3') ]
+    wpisy += [ Wpis(subject='testowy', entry_id='4') ]
         
-    html = template.Template(surowy).render(Context({'wpisy':wpisy}))
+    html = template.Template(surowy).render(Context({
+             'wpisy' : wpisy,
+             'admin_mode' : False
+             }
+        )
+    )
     return HttpResponse(html)
