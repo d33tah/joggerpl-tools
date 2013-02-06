@@ -8,11 +8,7 @@ class Wpis(models.Model):
     date_month = models.CharField(max_length=32)
     date_year = models.CharField(max_length=32)
     comments_blocked = models.BooleanField()
-    class Meta:
-        app_label = '' #http://stackoverflow.com/questions/4382032
 
 class Komentarz(models.Model):
     content = models.CharField(max_length=10240)
-    entry_id = models.ForeignKey('Wpis.entry_id')
-    class Meta:
-        app_label = '' #http://stackoverflow.com/questions/4382032
+    wpis_id = models.ForeignKey('Wpis')

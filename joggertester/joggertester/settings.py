@@ -1,7 +1,8 @@
 # Django settings for joggertester project.
 
 import os.path
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__+'/../'))
+print("PROJECT_DIR=%s" % PROJECT_DIR)
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
@@ -119,6 +120,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'joggertester'
     # Uncomment the next line to enable the admin:
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
