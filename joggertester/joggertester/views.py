@@ -6,14 +6,14 @@ from django.http import HttpResponse
 
 from models import Wpis, GrupaLinkow
 
-def glowna(request):
+def renderuj_szablon(nazwa_pliku):
     
-    surowy = open('szablony/glowna.html').read()
+    surowy = open(nazwa_pliku).read()
     
     tagi = { 
                    'JOG_TITLE': 'Dee\'s weblog',
-                   'HOME': 'http://deetah.jogger.pl/',
-                   'RSS': 'http://deetah.jogger.pl/rss/',
+                   'HOME': '/',
+                   'RSS': '/rss/',
                    'JOG': 'deetah',
                    
                    'ENTRY_SUBJECT': '{{ wpis.subject }}',
@@ -40,7 +40,7 @@ def glowna(request):
                        
                    'LINK_HREF': '{{ link.href }}',
                    'LINK_HREF_DESCR': '{{ link.href_descr }}',
-                   'LINK_GROUP_DESCR': '{{ grupa.descr }},' 
+                   'LINK_GROUP_DESCR': '{{ grupa.descr }}', 
     }
     
     bezposrednio = { 
@@ -66,9 +66,27 @@ def glowna(request):
         
     for tag in bezposrednio:
         surowy = surowy.replace(tag, bezposrednio[tag])
+        
+    return surowy
+
+def glowna(request):
+    
+    surowy = renderuj_szablon('szablony/glowna.html')
     
     html = template.Template(surowy).render(Context({
              'wpisy' : Wpis.objects.all(),
+             'grupy_linkow' : GrupaLinkow.objects.all(),
+             'admin_mode' : True
+             }
+        )
+    )
+    return HttpResponse(html)
+
+def komentarze(request, wpis_id):
+    surowy = renderuj_szablon('szablony/komentarze.html')
+    
+    html = template.Template(surowy).render(Context({
+             'wpis' : Wpis.objects.get(entry_id = wpis_id),
              'grupy_linkow' : GrupaLinkow.objects.all(),
              'admin_mode' : True
              }

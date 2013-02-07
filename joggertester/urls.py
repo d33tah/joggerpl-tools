@@ -9,6 +9,7 @@ from joggertester import views
 urlpatterns = patterns('',
     # Examples:
     url(r'^$', views.glowna, name='main'),
+    url(r'^id/(.*)$', views.komentarze, name='komentarze'),
     # url(r'^joggertester/', include('joggertester.foo.urls')),
 
     # Uncomment the admin/doc line below to enable admin documentation:
