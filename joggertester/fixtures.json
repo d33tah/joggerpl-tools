@@ -1,0 +1,307 @@
+[{
+    "pk": 4,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "contenttype",
+        "name": "content type",
+        "app_label": "contenttypes"
+    }
+}, {
+    "pk": 2,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "group",
+        "name": "group",
+        "app_label": "auth"
+    }
+}, {
+    "pk": 8,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "komentarz",
+        "name": "komentarz",
+        "app_label": "joggertester"
+    }
+}, {
+    "pk": 1,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "permission",
+        "name": "permission",
+        "app_label": "auth"
+    }
+}, {
+    "pk": 5,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "session",
+        "name": "session",
+        "app_label": "sessions"
+    }
+}, {
+    "pk": 6,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "site",
+        "name": "site",
+        "app_label": "sites"
+    }
+}, {
+    "pk": 3,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "user",
+        "name": "user",
+        "app_label": "auth"
+    }
+}, {
+    "pk": 7,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "wpis",
+        "name": "wpis",
+        "app_label": "joggertester"
+    }
+}, {
+    "pk": 1,
+    "model": "sites.site",
+    "fields": {
+        "domain": "example.com",
+        "name": "example.com"
+    }
+}, {
+    "pk": 1,
+    "model": "joggertester.wpis",
+    "fields": {
+        "date_month": "lutego",
+        "comments_blocked": false,
+        "entry_id": "3",
+        "content_short": "Przyk\u0142adowa tre\u015b\u0107 wpisu, lorem ipsum i takie tam.",
+        "date_year": "2013",
+        "date_day": "07",
+        "subject": "Wpis testowy1"
+    }
+}, {
+    "pk": 3,
+    "model": "joggertester.wpis",
+    "fields": {
+        "date_month": "lutego",
+        "comments_blocked": true,
+        "entry_id": "4",
+        "content_short": "Tutaj jest drugi wpis. Powinien by\u0107 poni\u017cej.",
+        "date_year": "2013",
+        "date_day": "06",
+        "subject": "Wpis testowy2"
+    }
+}, {
+    "pk": 4,
+    "model": "joggertester.wpis",
+    "fields": {
+        "date_month": "lutego",
+        "comments_blocked": false,
+        "entry_id": "",
+        "content_short": "Ten wpis powinien by\u0107 bez komentarzy.",
+        "date_year": "2013",
+        "date_day": "01",
+        "subject": "Wpis bez komentarzy."
+    }
+}, {
+    "pk": 1,
+    "model": "joggertester.komentarz",
+    "fields": {
+        "content": "Testowy komentarz.",
+        "wpis_id": 1
+    }
+}, {
+    "pk": 4,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_group",
+        "name": "Can add group",
+        "content_type": 2
+    }
+}, {
+    "pk": 5,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_group",
+        "name": "Can change group",
+        "content_type": 2
+    }
+}, {
+    "pk": 6,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_group",
+        "name": "Can delete group",
+        "content_type": 2
+    }
+}, {
+    "pk": 1,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_permission",
+        "name": "Can add permission",
+        "content_type": 1
+    }
+}, {
+    "pk": 2,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_permission",
+        "name": "Can change permission",
+        "content_type": 1
+    }
+}, {
+    "pk": 3,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_permission",
+        "name": "Can delete permission",
+        "content_type": 1
+    }
+}, {
+    "pk": 7,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_user",
+        "name": "Can add user",
+        "content_type": 3
+    }
+}, {
+    "pk": 8,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_user",
+        "name": "Can change user",
+        "content_type": 3
+    }
+}, {
+    "pk": 9,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_user",
+        "name": "Can delete user",
+        "content_type": 3
+    }
+}, {
+    "pk": 10,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_contenttype",
+        "name": "Can add content type",
+        "content_type": 4
+    }
+}, {
+    "pk": 11,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_contenttype",
+        "name": "Can change content type",
+        "content_type": 4
+    }
+}, {
+    "pk": 12,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_contenttype",
+        "name": "Can delete content type",
+        "content_type": 4
+    }
+}, {
+    "pk": 22,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_komentarz",
+        "name": "Can add komentarz",
+        "content_type": 8
+    }
+}, {
+    "pk": 23,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_komentarz",
+        "name": "Can change komentarz",
+        "content_type": 8
+    }
+}, {
+    "pk": 24,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_komentarz",
+        "name": "Can delete komentarz",
+        "content_type": 8
+    }
+}, {
+    "pk": 19,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_wpis",
+        "name": "Can add wpis",
+        "content_type": 7
+    }
+}, {
+    "pk": 20,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_wpis",
+        "name": "Can change wpis",
+        "content_type": 7
+    }
+}, {
+    "pk": 21,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_wpis",
+        "name": "Can delete wpis",
+        "content_type": 7
+    }
+}, {
+    "pk": 13,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_session",
+        "name": "Can add session",
+        "content_type": 5
+    }
+}, {
+    "pk": 14,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_session",
+        "name": "Can change session",
+        "content_type": 5
+    }
+}, {
+    "pk": 15,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_session",
+        "name": "Can delete session",
+        "content_type": 5
+    }
+}, {
+    "pk": 16,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_site",
+        "name": "Can add site",
+        "content_type": 6
+    }
+}, {
+    "pk": 17,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_site",
+        "name": "Can change site",
+        "content_type": 6
+    }
+}, {
+    "pk": 18,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_site",
+        "name": "Can delete site",
+        "content_type": 6
+    }
+}]

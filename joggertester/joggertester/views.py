@@ -28,8 +28,8 @@ def glowna(request):
                    {% if wpis.comments_blocked %}
                        Komentarze zablokowane
                    {% else %}
-                       {% if wpis.komentarz_set %}
-                           Są komentarze.
+                       {% if wpis.komentarz_set.all %}
+                           Są komentarze. ({{ wpis.komentarz_set.all|length }})
                        {% else %}
                            Nie ma komentarzy.
                        {% endif %} 
@@ -56,31 +56,8 @@ def glowna(request):
     for tag in bezposrednio:
         surowy = surowy.replace(tag,bezposrednio[tag])
     
-    wpisy = []
-    wpisy += [ Wpis(
-                    subject='testowy', 
-                    entry_id='3', 
-                    content_short='Asdf',
-                    date_day = '03',
-                    date_month = 'lutego',
-                    date_year = '2013',
-                    comments_blocked = False,
-                    ) 
-              ]
-    
-    wpisy += [ Wpis(
-                    subject='testowy', 
-                    entry_id='3', 
-                    content_short='Asdf',
-                    date_day = '03',
-                    date_month = 'lutego',
-                    date_year = '2013',
-                    comments_blocked = True
-                    ) 
-              ]    
-        
     html = template.Template(surowy).render(Context({
-             'wpisy' : wpisy,
+             'wpisy' : Wpis.objects.all(),
              'admin_mode' : True
              }
         )
