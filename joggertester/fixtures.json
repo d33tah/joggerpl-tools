@@ -15,11 +15,27 @@
         "app_label": "auth"
     }
 }, {
+    "pk": 9,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "grupalinkow",
+        "name": "grupa linkow",
+        "app_label": "joggertester"
+    }
+}, {
     "pk": 8,
     "model": "contenttypes.contenttype",
     "fields": {
         "model": "komentarz",
         "name": "komentarz",
+        "app_label": "joggertester"
+    }
+}, {
+    "pk": 10,
+    "model": "contenttypes.contenttype",
+    "fields": {
+        "model": "link",
+        "name": "link",
         "app_label": "joggertester"
     }
 }, {
@@ -111,6 +127,50 @@
     "fields": {
         "content": "Testowy komentarz.",
         "wpis_id": 1
+    }
+}, {
+    "pk": 1,
+    "model": "joggertester.grupalinkow",
+    "fields": {
+        "descr": "Portale"
+    }
+}, {
+    "pk": 2,
+    "model": "joggertester.grupalinkow",
+    "fields": {
+        "descr": "Inne"
+    }
+}, {
+    "pk": 1,
+    "model": "joggertester.link",
+    "fields": {
+        "grupa_linkow_id": 1,
+        "href": "http://slashdot.org",
+        "href_descr": "Slashdot"
+    }
+}, {
+    "pk": 2,
+    "model": "joggertester.link",
+    "fields": {
+        "grupa_linkow_id": 1,
+        "href": "http://h-online.com",
+        "href_descr": "The H"
+    }
+}, {
+    "pk": 3,
+    "model": "joggertester.link",
+    "fields": {
+        "grupa_linkow_id": 2,
+        "href": "http://jogger.pl",
+        "href_descr": "Jogger.pl"
+    }
+}, {
+    "pk": 4,
+    "model": "joggertester.link",
+    "fields": {
+        "grupa_linkow_id": 2,
+        "href": "http://deetah.jogger.pl",
+        "href_descr": "Dee's weblog"
     }
 }, {
     "pk": 4,
@@ -209,6 +269,30 @@
         "content_type": 4
     }
 }, {
+    "pk": 25,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_grupalinkow",
+        "name": "Can add grupa linkow",
+        "content_type": 9
+    }
+}, {
+    "pk": 26,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_grupalinkow",
+        "name": "Can change grupa linkow",
+        "content_type": 9
+    }
+}, {
+    "pk": 27,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_grupalinkow",
+        "name": "Can delete grupa linkow",
+        "content_type": 9
+    }
+}, {
     "pk": 22,
     "model": "auth.permission",
     "fields": {
@@ -231,6 +315,30 @@
         "codename": "delete_komentarz",
         "name": "Can delete komentarz",
         "content_type": 8
+    }
+}, {
+    "pk": 28,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "add_link",
+        "name": "Can add link",
+        "content_type": 10
+    }
+}, {
+    "pk": 29,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "change_link",
+        "name": "Can change link",
+        "content_type": 10
+    }
+}, {
+    "pk": 30,
+    "model": "auth.permission",
+    "fields": {
+        "codename": "delete_link",
+        "name": "Can delete link",
+        "content_type": 10
     }
 }, {
     "pk": 19,

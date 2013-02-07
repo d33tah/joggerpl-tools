@@ -12,3 +12,11 @@ class Wpis(models.Model):
 class Komentarz(models.Model):
     content = models.CharField(max_length=10240)
     wpis_id = models.ForeignKey('Wpis')
+
+class GrupaLinkow(models.Model):
+    descr = models.CharField(max_length=1024)
+    
+class Link(models.Model):
+    grupa_linkow_id = models.ForeignKey('GrupaLinkow')
+    href = models.CharField(max_length=1024)
+    href_descr = models.CharField(max_length=1024)

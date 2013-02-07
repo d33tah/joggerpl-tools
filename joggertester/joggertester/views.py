@@ -4,7 +4,7 @@ from django import template
 from django.template import Context
 from django.http import HttpResponse
 
-from models import Wpis
+from models import Wpis, GrupaLinkow
 
 def glowna(request):
     
@@ -24,18 +24,23 @@ def glowna(request):
                    'ENTRY_DATE_MONTH': '{{ wpis.date_month }}',
                    'ENTRY_DATE_YEAR': '{{ wpis.date_year }}',
                    'ENTRY_COMMENT_HREF': '/id/{{ wpis.entry_id }}',
-                   'ENTRY_COMMENT_HREF_DESCR': """
-                   {% if wpis.comments_blocked %}
-                       Komentarze zablokowane
-                   {% else %}
-                       {% if wpis.komentarz_set.all %}
-                           Są komentarze. ({{ wpis.komentarz_set.all|length }})
-                       {% else %}
-                           Nie ma komentarzy.
-                       {% endif %} 
-                   {% endif %}
-                   """
-                    
+                   'ENTRY_COMMENT_HREF_DESCR': 
+                       """
+                           {% if wpis.comments_blocked %}
+                               Komentarze zablokowane
+                           {% else %}
+                               {% if wpis.komentarz_set.all %}
+                                   Są komentarze. 
+                                   ({{ wpis.komentarz_set.all|length }})
+                               {% else %}
+                                   Nie ma komentarzy.
+                               {% endif %} 
+                           {% endif %}
+                       """,
+                       
+                   'LINK_HREF': '{{ link.href }}',
+                   'LINK_HREF_DESCR': '{{ link.href_descr }}',
+                   'LINK_GROUP_DESCR': '{{ grupa.descr }},' 
     }
     
     bezposrednio = { 
@@ -46,18 +51,25 @@ def glowna(request):
                     '</ADMIN_BLOCK>': '{% endif %}',
                     
                     '<ENTRY_CONTENT_SHORT_EXIST>': '{% if wpis.content_short %}',
-                    '</ENTRY_CONTENT_SHORT_EXIST>': '{% endif %}'
+                    '</ENTRY_CONTENT_SHORT_EXIST>': '{% endif %}',
+                    
+                    '<LINK_BLOCK>': '{% for link in grupa.link_set.all %}',
+                    '</LINK_BLOCK>': '{% endfor %}',
+                    
+                    '<LINK_GROUP_BLOCK>': '{% for grupa in grupy_linkow %}',
+                    '</LINK_GROUP_BLOCK>': '{% endfor %}',
     }
     
     for tag in tagi:
-        surowy = surowy.replace('<'+tag+'/>',tagi[tag])
-        surowy = surowy.replace('&'+tag+';',tagi[tag])
+        surowy = surowy.replace('<' + tag + '/>', tagi[tag])
+        surowy = surowy.replace('&' + tag + ';', tagi[tag])
         
     for tag in bezposrednio:
-        surowy = surowy.replace(tag,bezposrednio[tag])
+        surowy = surowy.replace(tag, bezposrednio[tag])
     
     html = template.Template(surowy).render(Context({
              'wpisy' : Wpis.objects.all(),
+             'grupy_linkow' : GrupaLinkow.objects.all(),
              'admin_mode' : True
              }
         )
