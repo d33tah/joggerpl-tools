@@ -13,6 +13,9 @@ class Komentarz(models.Model):
     content = models.CharField(max_length=10240)
     wpis_id = models.ForeignKey('Wpis')
 
+class Trackback(models.Model):
+    wpis_id = models.ForeignKey('Wpis')
+
 class GrupaLinkow(models.Model):
     descr = models.CharField(max_length=1024)
     

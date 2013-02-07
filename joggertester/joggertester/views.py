@@ -23,7 +23,7 @@ def renderuj_szablon(nazwa_pliku):
                    'ENTRY_DATE_DAY': '{{ wpis.date_day }}',
                    'ENTRY_DATE_MONTH': '{{ wpis.date_month }}',
                    'ENTRY_DATE_YEAR': '{{ wpis.date_year }}',
-                   'ENTRY_COMMENT_HREF': '/id/{{ wpis.entry_id }}',
+                   'ENTRY_COMMENT_HREF': '/id/{{ wpis.entry_id }}/',
                    'ENTRY_COMMENT_HREF_DESCR': 
                        """
                            {% if wpis.comments_blocked %}
@@ -40,7 +40,9 @@ def renderuj_szablon(nazwa_pliku):
                        
                    'LINK_HREF': '{{ link.href }}',
                    'LINK_HREF_DESCR': '{{ link.href_descr }}',
-                   'LINK_GROUP_DESCR': '{{ grupa.descr }}', 
+                   'LINK_GROUP_DESCR': '{{ grupa.descr }}',
+                   
+                   'COMMENT_CLASS': "{% if forloop.counter|divisibleby:2 %}{{tryb}}2{% else %}{{tryb}}1{% endif %}",
     }
     
     bezposrednio = { 
@@ -59,8 +61,19 @@ def renderuj_szablon(nazwa_pliku):
                     '<LINK_GROUP_BLOCK>': '{% for grupa in grupy_linkow %}',
                     '</LINK_GROUP_BLOCK>': '{% endfor %}',
                     
-                    '<COMMENT_BLOCK>': '{% for komentarz in wpis.komentarz_set.all %}',
-                    '</COMMENT_BLOCK>': '{% endfor %}', 
+                    '<COMMENT_BLOCK>': 
+                       """
+                       {% with tryb="comment" %}
+                       {% for komentarz in wpis.komentarz_set.all %}
+                       """,
+                    '</COMMENT_BLOCK>': '{% endfor %}{% endwith %}', 
+                    
+                    '<TRACKBACK_BLOCK>': 
+                       """
+                       {% with tryb="trackback" %}
+                       {% for komentarz in wpis.trackback_set.all %}
+                       """,
+                    '</TRACKBACK_BLOCK>': '{% endfor %}{% endwith %}', 
     }
     
     for tag in tagi:
@@ -86,6 +99,10 @@ def glowna(request):
     return HttpResponse(html)
 
 def komentarze(request, wpis_id):
+    
+    if wpis_id.endswith('/'):
+        wpis_id = wpis_id[:-1]
+        
     surowy = renderuj_szablon('szablony/komentarze.html')
     
     html = template.Template(surowy).render(Context({
