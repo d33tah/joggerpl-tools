@@ -37,12 +37,19 @@ def renderuj_szablon(nazwa_pliku):
                                {% endif %} 
                            {% endif %}
                        """,
+                   'ENTRY_CONTENT': '{{ wpis.content }}',
                        
                    'LINK_HREF': '{{ link.href }}',
                    'LINK_HREF_DESCR': '{{ link.href_descr }}',
                    'LINK_GROUP_DESCR': '{{ grupa.descr }}',
                    
                    'COMMENT_CLASS': "{% if forloop.counter|divisibleby:2 %}{{tryb}}2{% else %}{{tryb}}1{% endif %}",
+                   'COMMENT_CONTENT': '{% autoescape off %}{{ komentarz.content }}{% endautoescape %}',
+                   'COMMENT_NICK': '{{ komentarz.nick }}',
+                   'COMMENT_DATE': '{{ komentarz.date }}',
+                   'COMMENT_HOUR': '{{ komentarz.hour }}',
+                   'COMMENT_ID': '{{ komentarz.id }}',
+                   'COMMENT_NUMBER': '{{ forloop.counter }}',
     }
     
     bezposrednio = { 
@@ -67,6 +74,18 @@ def renderuj_szablon(nazwa_pliku):
                        {% for komentarz in wpis.komentarz_set.all %}
                        """,
                     '</COMMENT_BLOCK>': '{% endfor %}{% endwith %}', 
+
+                    '<COMMENT_ALLOWED_BLOCK>': '{% if not wpis.comments_blocked %}',
+                    '</COMMENT_ALLOWED_BLOCK>': '{% endif %}',
+                    
+                    '<COMMENT_NONE_BLOCK>': '{% if wpis.comments_blocked %}',
+                    '</COMMENT_NONE_BLOCK>': '{% endif %}',
+                    
+                    '<COMMENT_BLOCK_NOT_EXIST>': '{% if not wpis.komentarz_set.all %}',
+                    '</COMMENT_BLOCK_NOT_EXIST>': '{% endif %}',
+                                        
+                    '<COMMENT_BLOCK_EXIST>': '{% if wpis.komentarz_set.all %}',
+                    '</COMMENT_BLOCK_EXIST>': '{% endif %}',
                     
                     '<TRACKBACK_BLOCK>': 
                        """
@@ -74,6 +93,9 @@ def renderuj_szablon(nazwa_pliku):
                        {% for komentarz in wpis.trackback_set.all %}
                        """,
                     '</TRACKBACK_BLOCK>': '{% endfor %}{% endwith %}', 
+                    
+                    '<TRACKBACK_BLOCK_EXIST>': '{% if wpis.trackback_set.all %}',
+                    '</TRACKBACK_BLOCK_EXIST>': '{% endif %}',
     }
     
     for tag in tagi:

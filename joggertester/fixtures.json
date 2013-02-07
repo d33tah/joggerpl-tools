@@ -125,7 +125,7 @@
     "pk": 1,
     "model": "joggertester.komentarz",
     "fields": {
-        "content": "Testowy komentarz.",
+        "content": "<p>Testowy komentarz.</p>",
         "wpis_id": 1
     }
 }, {
