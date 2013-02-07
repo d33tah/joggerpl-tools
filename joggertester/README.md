@@ -15,6 +15,7 @@ Django.
 2. Skopiuj do katalogu "szablony" kod HTML Twojego szablonu. Plik 
 z kodem strony głównej powinien mieć nazwę "glowna.html". 
 3. Na dzień dzisiejszy konfiguracja skryptu polega na edycji pliku "views.py".
-4. Wykonaj ./manage.py loaddata aby załadować fiksturki
-5. Wykonaj ./manage.py runserver
+4. Wykonaj ./manage syncdb aby przygotować bazę danych
+5. Wykonaj ./manage.py loaddata aby załadować fiksturki
+6. Wykonaj ./manage.py runserver
 

@@ -58,6 +58,9 @@ def renderuj_szablon(nazwa_pliku):
                     
                     '<LINK_GROUP_BLOCK>': '{% for grupa in grupy_linkow %}',
                     '</LINK_GROUP_BLOCK>': '{% endfor %}',
+                    
+                    '<COMMENT_BLOCK>': '{% for komentarz in wpis.komentarz_set.all %}',
+                    '</COMMENT_BLOCK>': '{% endfor %}', 
     }
     
     for tag in tagi:
