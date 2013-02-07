@@ -10,11 +10,11 @@ platformy blogowej jogger.pl w trybie offline.
 INSTALACJA
 ----------
 
-1) Aby użyć joggertestera, potrzebujesz zainstalowanego Pythona oraz bibliotekę 
+1. Aby użyć joggertestera, potrzebujesz zainstalowanego Pythona oraz bibliotekę 
 Django.
-2) Skopiuj do katalogu "szablony" kod HTML Twojego szablonu. Plik 
+2. Skopiuj do katalogu "szablony" kod HTML Twojego szablonu. Plik 
 z kodem strony głównej powinien mieć nazwę "glowna.html". 
-3) Na dzień dzisiejszy konfiguracja skryptu polega na edycji pliku "views.py".
-4) Wykonaj ./manage.py loaddata aby załadować fiksturki
-5) Wykonaj ./manage.py runserver
+3. Na dzień dzisiejszy konfiguracja skryptu polega na edycji pliku "views.py".
+4. Wykonaj ./manage.py loaddata aby załadować fiksturki
+5. Wykonaj ./manage.py runserver
 
