@@ -104,5 +104,8 @@ bezposrednio = {
 
                        '<TRACKBACK_BLOCK_EXIST>': '{% if wpis.trackback_set.all %}',
                        '</TRACKBACK_BLOCK_EXIST>': '{% endif %}',
+
+                       '<TRACKBACK_BLOCK_NOT_EXIST>': '{% if not wpis.trackback_set.all %}',
+                       '</TRACKBACK_BLOCK_NOT_EXIST>': '{% endif %}',
 }
 
