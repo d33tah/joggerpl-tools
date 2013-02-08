@@ -27,20 +27,38 @@ tagi = {
                                {% endif %} 
                            {% endif %}
                        """,
-                       'ENTRY_CONTENT': '{{ wpis.content }}',
+               'ENTRY_CONTENT': '{{ wpis.content }}',
 
-                       'LINK_HREF': '{{ link.href }}',
-                       'LINK_HREF_DESCR': '{{ link.href_descr }}',
-                       'LINK_GROUP_DESCR': '{{ grupa.descr }}',
+               'LINK_HREF': '{{ link.href }}',
+               'LINK_HREF_DESCR': '{{ link.href_descr }}',
+               'LINK_GROUP_DESCR': '{{ grupa.descr }}',
 
-                       'COMMENT_CLASS': "{% if forloop.counter|divisibleby:2 %}{{tryb}}2{% else %}{{tryb}}1{% endif %}",
-                       'COMMENT_CONTENT': '{% autoescape off %}{{ komentarz.content }}{% endautoescape %}',
-                       'COMMENT_NICK': '{{ komentarz.nick }}',
-                       'COMMENT_DATE': '{{ komentarz.date }}',
-                       'COMMENT_HOUR': '{{ komentarz.hour }}',
-                       'COMMENT_ID': '{{ komentarz.id }}',
-                       'COMMENT_NUMBER': '{{ forloop.counter }}',
-                       }
+               'COMMENT_CLASS': "{% if forloop.counter|divisibleby:2 %}{{tryb}}2{% else %}{{tryb}}1{% endif %}",
+               'COMMENT_CONTENT': '{% autoescape off %}{{ komentarz.content }}{% endautoescape %}',
+               'COMMENT_NICK': '{{ komentarz.nick }}',
+               'COMMENT_DATE': '{{ komentarz.date }}',
+               'COMMENT_HOUR': '{{ komentarz.hour }}',
+               'COMMENT_ID': '{{ komentarz.id }}',
+               'COMMENT_NUMBER': '{{ forloop.counter }}',
+               
+               'HEADER': 
+"""
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html lang="pl">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<title>Jogger :: [Twój JID]</title>
+<link rel="StyleSheet" href="/files/style.css" type="text/css">
+</head>
+<body>
+""",
+               'FOOTER':
+"""
+</body>
+</html>                
+""",
+}
 
 bezposrednio = { 
                 '<ENTRY_BLOCK>': '{% for wpis in wpisy %}',
