@@ -41,6 +41,13 @@ tagi = {
     'COMMENT_ID': '{{ komentarz.id }}',
     'COMMENT_NUMBER': '{{ forloop.counter }}',
     
+    'COMMENT_FORM_ACTION': '/id/{{ wpis.entry_id }}/',
+    'COMMENT_FORM_NICKID': '{{ ostatni_nick }}', #TODO: pamiętać poprzedni stan
+    'COMMENT_FORM_NICKURL': '{{ ostatni_url }}',  #TODO: pamiętać poprzedni stan
+    'COMMENT_FORM_BODY': '{{ wpisana_tresc }}',
+        
+    'LOGGED_USER_NAME': '{{ zalogowany }}',
+    
     'HEADER': 
 """<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html lang="pl">
@@ -105,5 +112,29 @@ bezposrednio = {
     
     '<TRACKBACK_BLOCK_NOT_EXIST>': '{% if not wpis.trackback_set.all %}',
     '</TRACKBACK_BLOCK_NOT_EXIST>': '{% endif %}',
+
+    '<COMMENT_FORM_NOUSER_BLOCK>': '{% if not zalogowany %}',
+    '</COMMENT_FORM_NOUSER_BLOCK>': '{% endif %}',
+    
+    '<COMMENT_LOGGED_BLOCK>': '{% if zalogowany %}',
+    '</COMMENT_LOGGED_BLOCK>': '{% endif %}',    
+
+    '<NOUSER_BLOCK>': '{% if not zalogowany %}',
+    '</NOUSER_BLOCK>': '{% endif %}',
+    
+    '<LOGGED_USER_BLOCK>': '{% if zalogowany %}',
+    '</LOGGED_USER_BLOCK>': '{% endif %}',    
+        
+#TODO: HACKI. NIE MAM ZIELONEGO POJĘCIA CO TE TAGI WŁAŚCIWIE MIAŁYBY ROBIĆ.
+    
+    '<COMMENT_FORM_BLOCK>': '',
+    '</COMMENT_FORM_BLOCK>': '',    
+    
+    '<COMMENT_FORM_NOTIFY_START_BLOCK>': '',
+    '</COMMENT_FORM_NOTIFY_START_BLOCK>': '',    
+    
+    '<COMMENT_FORM_NOTIFY_STOP_BLOCK>': '',
+    '</COMMENT_FORM_NOTIFY_STOP_BLOCK>': '',    
+
 }
 

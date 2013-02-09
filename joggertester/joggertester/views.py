@@ -43,7 +43,11 @@ def komentarze(request, wpis_id):
     html = template.Template(surowy).render(Context({
              'wpis' : Wpis.objects.get(entry_id = wpis_id),
              'grupy_linkow' : GrupaLinkow.objects.all(),
-             'admin_mode' : True
+             'admin_mode' : True,
+             'zalogowany': 'deetah',
+             'ostatni_nickid': 'deetah',
+             'ostatni_url': 'http://deetah.jogger.pl',
+             'wpisana_tresc': '',
              }
         )
     )
