@@ -1,4 +1,13 @@
+# -*- coding: utf-8 -*-
+
 from django.db import models
+
+class Kategoria(models.Model):
+    name = models.CharField(max_length=128)
+    #TODO: ojciec_id 
+    class Meta:
+        verbose_name_plural = "kategorie"
+
 
 class Wpis(models.Model):
     subject = models.CharField(max_length=1024)
@@ -9,7 +18,10 @@ class Wpis(models.Model):
     date_month = models.CharField(max_length=32)
     date_year = models.CharField(max_length=32)
     comments_blocked = models.BooleanField()
-
+    kategoria_id = models.ForeignKey('Kategoria')
+    class Meta:
+        verbose_name_plural = "wpisy"
+            
 class Komentarz(models.Model):
     wpis_id = models.ForeignKey('Wpis')
     content = models.CharField(max_length=10240)
@@ -17,14 +29,23 @@ class Komentarz(models.Model):
     date = models.CharField(max_length=64)
     hour = models.CharField(max_length=32)
     comment_id = models.CharField(max_length=32)
-
+    class Meta:
+        verbose_name_plural = "komentarze"
+        
 class Trackback(models.Model):
     wpis_id = models.ForeignKey('Wpis')
-
+    class Meta:
+        verbose_name_plural = "trackbacki"
+        
 class GrupaLinkow(models.Model):
     descr = models.CharField(max_length=1024)
-    
+    class Meta:
+        verbose_name_plural = "grupy linków"
+            
 class Link(models.Model):
     grupa_linkow_id = models.ForeignKey('GrupaLinkow')
     href = models.CharField(max_length=1024)
     href_descr = models.CharField(max_length=1024)
+    class Meta:
+        verbose_name_plural = "linki"
+            
