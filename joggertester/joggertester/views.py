@@ -3,8 +3,9 @@
 from django import template
 from django.template import Context
 from django.http import HttpResponse
+from django.db.models import Count
 
-from models import Wpis, GrupaLinkow
+from models import Wpis, GrupaLinkow, Kategoria
 from slowniki_tagow import tagi, bezposrednio
 
 def renderuj_szablon(nazwa_pliku):
@@ -27,7 +28,8 @@ def glowna(request):
     html = template.Template(surowy).render(Context({
              'wpisy' : Wpis.objects.all(),
              'grupy_linkow' : GrupaLinkow.objects.all(),
-             'admin_mode' : True
+             'admin_mode' : True,
+             'kategorie': Kategoria.objects.all().annotate(entries=Count('wpis')),
              }
         )
     )
@@ -48,6 +50,7 @@ def komentarze(request, wpis_id):
              'ostatni_nickid': 'deetah',
              'ostatni_url': 'http://deetah.jogger.pl',
              'wpisana_tresc': '',
+             'kategorie': Kategoria.objects.all().annotate(entries=Count('wpis')),
              }
         )
     )

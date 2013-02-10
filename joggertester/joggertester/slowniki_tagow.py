@@ -45,6 +45,10 @@ tagi = {
     'COMMENT_FORM_NICKID': '{{ ostatni_nick }}', #TODO: pamiętać poprzedni stan
     'COMMENT_FORM_NICKURL': '{{ ostatni_url }}',  #TODO: pamiętać poprzedni stan
     'COMMENT_FORM_BODY': '{{ wpisana_tresc }}',
+    
+    'CATEGORY_ENTRIES': '{{ kategoria.entries }}',
+    'CATEGORY_HREF_DESCR': '{{ kategoria.href_descr }}',
+    'CATEGORY_HREF': '{{ kategoria.href }}',
         
     'LOGGED_USER_NAME': '{{ zalogowany }}',
     
@@ -124,6 +128,9 @@ bezposrednio = {
     
     '<LOGGED_USER_BLOCK>': '{% if zalogowany %}',
     '</LOGGED_USER_BLOCK>': '{% endif %}',    
+    
+    '<CATEGORY_BLOCK>': '{% for kategoria in kategorie %}',
+    '</CATEGORY_BLOCK>': '{% endfor %}',
         
 #TODO: HACKI. NIE MAM ZIELONEGO POJĘCIA CO TE TAGI WŁAŚCIWIE MIAŁYBY ROBIĆ.
     

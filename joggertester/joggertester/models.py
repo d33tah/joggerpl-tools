@@ -1,10 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
+from django.template.defaultfilters import slugify
 
 class Kategoria(models.Model):
-    name = models.CharField(max_length=128)
-    #TODO: ojciec_id 
+    href_descr = models.CharField(max_length=128)
+    title =  models.CharField(max_length=1024)
+    #TODO: ojciec_id
+    
+    def href(self):
+        href_descr = self.href_descr
+        return '/kategoria/' + slugify(href_descr)
+    
     class Meta:
         verbose_name_plural = "kategorie"
 
