@@ -23,6 +23,15 @@ samym poziomie, co katalog App - czyli obok niego).
 "./manager.py runserver" albo "./manager.py syncdb" uruchamiaj pliki .bat
 o odpowiadajacej im nazwie z katalogu Windows (tutaj "runserver.bat" lub 
 "syncdb.bat")
+
+UWAGA:
+
+Jeżeli zobaczysz błąd "Templates can only be constructed from unicode or 
+UTF-8 strings", oznacza to najprawdopodobniej, że któryś z plików z katalogu
+szablony nie jest kodowany jako UTF-8 (zwykle chodzi o kodowanie polskich 
+znaków). Aby rozwiązać ten problem, otwórz wadliwy plik szablonu przy pomocy
+programu Notepad++ i z menu Format wybierz "Konwertuj na format UTF-8 bez 
+BOM", po czym zapisz plik.
  
 INSTALACJA
 ----------
@@ -31,10 +40,15 @@ INSTALACJA
 Django.
 2. Skopiuj do katalogu "szablony" kod HTML Twojego szablonu. Plik 
 z kodem strony głównej powinien mieć nazwę "glowna.html", plik z szablonem 
-strony z komentarzami powinien się nazywać "komentarze.html".
+strony z komentarzami powinien się nazywać "komentarze.html". Pliki, które
+w serwisie jogger.pl przechowywałeś w katalogu "files", skopiuj do katalogu
+o nazwie "files".
 3. Na dzień dzisiejszy konfiguracja skryptu polega na edycji pliku 
 "joggertester/slowniki_tagow.py".
-4. Wykonaj ./manage syncdb aby przygotować bazę danych.
+4. Wykonaj ./manage syncdb aby przygotować bazę danych. "Superuser", o który 
+zapyta Cię skrypt, to konto potrzebne aby uzyskać dostęp do panelu 
+administracyjnego. Zalecane jest jego utworzenie (odpowiedź "yes"), choć
+oczywiście można to zrobić później (komenda: ./manage.py createsuperuser)
 5. Wykonaj ./manage.py loaddata fixtures.json aby załadować fiksturki.
 UWAGA: projekt jest ciągle aktywnie rozwijany i fiksturki mogą być nieaktualne.
 W takiej sytuacji w tym kroku pojawi się błąd, zignoruj go. Wykonaj 
@@ -42,6 +56,22 @@ W takiej sytuacji w tym kroku pojawi się błąd, zignoruj go. Wykonaj
 6. Wykonaj ./manage.py runserver.
 7. Jeżeli w kroku 5 nie udało się załadować fiksturek, odwiedź stronę 
 http://localhost:8000/admin
+
+BUGI, PROBLEMY
+--------------
+
+Nie wszystkie tagi działają tak samo jak w serwisie Jogger.pl. Niektóre z nich
+nie działają w ogóle. Jeżeli na obsłudze któregoś z nich szczególnie Ci zależy,
+zarejestruj się na serwisie github.com i kliknij "New Issue" tutaj:
+
+https://github.com/d33tah/joggerpl-tools/issues/new
+
+Ta sama procedura tyczy się zgłaszania bugów.
+
+UWAGA:
+
+Problemy typu "DatabaseError" wynikają z nie wykonania kroku 4 sekcji 
+"INSTALACJA".
 
 JAK TO DZIAŁA?
 --------------
