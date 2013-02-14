@@ -7,6 +7,23 @@ joggertester - narzędzie do testowania szablonów dla jogger.pl
 Niniejsza aplikacja została stworzona w celu ułatwienia edycji szablonów dla
 platformy blogowej jogger.pl w trybie offline. 
 
+INSTALACJA - WINDOWS
+--------------------
+
+Joggertester został napisany i był testowany głównie z użyciem systemu Linux;
+możliwe jest jednak uruchomienie go pod systemem Windows.
+
+1. Zainstaluj Portable Python w wersji 2.7:
+http://www.portablepython.com/wiki/PortablePython2.7.3.2 (linki widoczne na 
+końcu strony)
+2. Skopiuj katalog "joggertester" (ten, w którym znajduje się ten plik README)
+do wybranego przez Ciebie miejsca instalacji (tak, aby znajdował się na tym 
+samym poziomie, co katalog App - czyli obok niego).
+3. W poniższej instrukcji instalacji, pomiń krok 1 i zamiast komend typu
+"./manager.py runserver" albo "./manager.py syncdb" uruchamiaj pliki .bat
+o odpowiadajacej im nazwie z katalogu Windows (tutaj "runserver.bat" lub 
+"syncdb.bat")
+ 
 INSTALACJA
 ----------
 
@@ -18,7 +35,7 @@ strony z komentarzami powinien się nazywać "komentarze.html".
 3. Na dzień dzisiejszy konfiguracja skryptu polega na edycji pliku 
 "joggertester/slowniki_tagow.py".
 4. Wykonaj ./manage syncdb aby przygotować bazę danych.
-5. Wykonaj ./manage.py loaddata aby załadować fiksturki.
+5. Wykonaj ./manage.py loaddata fixtures.json aby załadować fiksturki.
 UWAGA: projekt jest ciągle aktywnie rozwijany i fiksturki mogą być nieaktualne.
 W takiej sytuacji w tym kroku pojawi się błąd, zignoruj go. Wykonaj 
 ./manage.py createsuperuser i utwórz konto administratora. 
