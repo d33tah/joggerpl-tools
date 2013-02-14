@@ -1,2 +1,2 @@
-..\..\app\python.exe manage.py syncdb.py
+..\..\app\python.exe ..\manage.py syncdb
 pause

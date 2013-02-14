@@ -1,2 +1,2 @@
-..\..\app\python.exe manage.py runserver
+..\..\app\python.exe ..\manage.py runserver
 pause
