@@ -71,4 +71,28 @@ class JoggerScraper(mechanize.Browser):
         self.logger.debug('pobierz_szablon_logowanie')
         return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/'+\
                                      '?file=login')
+        
+    def zmien_szablon_glowna(self, _buffer):
+        self.logger.debug('zmien_szablon_glowna: %s' % _buffer)
+        self.__do_get('https://login.jogger.pl/templates/edit/')
+        self.select_form(nr=0)
+        self.form['templatesContent'] = _buffer
+        self.submit()
     
+    def zmien_szablon_komentarze(self, _buffer):
+        self.logger.debug('zmien_szablon_komentarze: %s' % _buffer)
+        self.__do_get('https://login.jogger.pl/templates/edit/?file=comments')
+        self.select_form(nr=0)
+        self.form['templatesContent'] = _buffer
+        self.submit()
+    
+    def zmien_szablon_strony(self, _buffer):
+        self.logger.debug('zmien_szablon_strony: %s' % _buffer)
+        raise NotImplementedError()
+    
+    def zmien_szablon_logowanie(self, _buffer):
+        self.logger.debug('zmien_szablon_logowanie: %s' % _buffer)
+        self.__do_get('https://login.jogger.pl/templates/edit/?file=login')
+        self.select_form(nr=0)
+        self.form['templatesContent'] = _buffer
+        self.submit()

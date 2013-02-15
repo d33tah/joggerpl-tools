@@ -14,6 +14,7 @@ from config import jogger_login, jogger_haslo #potrzebny tylko dla tych 2 danych
 from JoggerScraper import JoggerScraper
 from common_logger import common_logger
 from MWT import MWT
+from DelayedWriter import DelayedWriter
 
 @MWT()
 def get_url(url):
@@ -27,7 +28,24 @@ class JoggerFS(fuse.Fuse):
         self.jogger_scraper = JoggerScraper(jogger_login, jogger_haslo)
         self.logger = common_logger("JoggerFS")
         
-
+        self.delayed_writer = DelayedWriter()
+        
+        self.delayed_writer.register('/szablon/glowna.html', 
+             lambda: self.jogger_scraper.pobierz_szablon_glowna().encode('utf-8'), 
+             lambda x: self.jogger_scraper.zmien_szablon_glowna(x))
+        
+        self.delayed_writer.register('/szablon/komentarze.html', 
+             lambda: self.jogger_scraper.pobierz_szablon_komentarze().encode('utf-8'), 
+             lambda x: self.jogger_scraper.zmien_szablon_komentarze(x))        
+        
+        self.delayed_writer.register('/szablon/strony.html', 
+             lambda: self.jogger_scraper.pobierz_szablon_strony().encode('utf-8'), 
+             lambda x: self.jogger_scraper.zmien_szablon_strony(x))
+        
+        self.delayed_writer.register('/szablon/logowanie.html', 
+             lambda: self.jogger_scraper.pobierz_szablon_logowanie().encode('utf-8'), 
+             lambda x: self.jogger_scraper.zmien_szablon_logowanie(x))
+                
     def getattr(self, path):
         
         self.logger.debug("getattr('%s')" % path)
@@ -128,3 +146,32 @@ class JoggerFS(fuse.Fuse):
             return [fuse.Direntry(x) for x in files.keys()]
         else:
             return -errno.ENOENT
+    
+    def write(self, path, buf, offset):
+        self.logger.debug('write(path="%s")' % path)
+        self.delayed_writer.write(path, offset, buf)
+        return len(buf)
+    
+    def truncate(self, path, length):
+        
+        try:
+            
+            self.logger.debug('truncate(path="%s", length=%s)' % (path, length))
+            if 'buffer' not in self.delayed_writer.paths[path]:
+                self.delayed_writer.paths[path]['buffer'] = '\0'*length
+                return 0
+            
+            if length==0:
+                self.delayed_writer.paths[path]['buffer'] = ''
+                self.logger.debug('truncated.')
+                return 0
+
+            _buffer = self.delayed_writer.paths[path]['buffer']
+            if(len(_buffer))>length:
+                self.delayed_writer.paths[path]['buffer'] = buffer[:length]
+            else:
+                self.delayed_writer.paths[path]['buffer'] += '\0'*(length-len(_buffer))
+            return 0
+                
+        except KeyError:
+            return -errno.ENOENT    

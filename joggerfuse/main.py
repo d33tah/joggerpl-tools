@@ -43,7 +43,7 @@ if __name__ == '__main__':
     fs = JoggerFS()
     fs.parse(errex=1)
     
-    logging.getLogger('JoggerFS').setLevel(logging.INFO)
+    #logging.getLogger('JoggerFS').setLevel(logging.INFO)
     logging.getLogger('MWT').setLevel(logging.INFO)
 
     main_logger.info("Will try to mount the FUSE bindings.")
