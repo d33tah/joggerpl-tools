@@ -37,7 +37,7 @@ class MWT(object):
                 if (time.time() - v[1]) > self.timeout:
                     raise KeyError
                 else:
-                    self.logger.logger.debug('hit the cache: %s' % f.func_name)
+                    self.logger.debug('hit the cache: %s' % f.func_name)
             except KeyError:
                 v = self.cache[key] = f(*args,**kwargs),time.time()
             return v[0]

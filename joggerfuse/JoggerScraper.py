@@ -23,7 +23,7 @@ class JoggerScraper(mechanize.Browser):
         return drzewo
         
     def __zaloguj(self):
-        self.logger.logger.debug('zaloguj')
+        self.logger.debug('zaloguj')
         self.select_form(nr=0)
         self.form['login_jabberid'] = self.login
         self.form['login_jabberpass'] = self.haslo
@@ -51,24 +51,24 @@ class JoggerScraper(mechanize.Browser):
         
     @MWT()
     def pobierz_szablon_glowna(self):
-        self.logger.logger.debug('pobierz_szablon_glowna')
+        self.logger.debug('pobierz_szablon_glowna')
         return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/')
     
     @MWT()
     def pobierz_szablon_komentarze(self):
-        self.logger.logger.debug('pobierz_szablon_komentarze')
+        self.logger.debug('pobierz_szablon_komentarze')
         return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/'+\
                                      '?file=comments')
         
     @MWT()
     def pobierz_szablon_strony(self):
-        self.logger.logger.debug('pobierz_szablon_strony')
+        self.logger.debug('pobierz_szablon_strony')
         raise NotImplementedError() #są czary-mary z URLem
                                     # który trzeba najpierw odwiedzić
                                     
     @MWT()
     def pobierz_szablon_logowanie(self):
-        self.logger.logger.debug('pobierz_szablon_logowanie')
+        self.logger.debug('pobierz_szablon_logowanie')
         return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/'+\
                                      '?file=login')
     

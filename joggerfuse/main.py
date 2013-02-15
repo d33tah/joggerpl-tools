@@ -14,12 +14,12 @@ main_logger = common_logger('main')
 
 def do_testing():
     global main_logger
-    main_logger.logger.debug('do_testing')
+    main_logger.debug('do_testing')
     print(tuple(os.walk('katalog')))
 
 def sleep_until_ctrc():
     global main_logger
-    main_logger.logger.debug('sleep_until_ctrc')
+    main_logger.debug('sleep_until_ctrc')
     while True:
         try:
             pass
@@ -28,9 +28,9 @@ def sleep_until_ctrc():
 
 def umount_fuse(signum = None, frame = None, exit_after_attempt = True):
     global main_logger
-    main_logger.logger.info('Unmounting...')
+    main_logger.info('Unmounting...')
     os.system("fusermount -u katalog")
-    main_logger.logger.info('Done.')
+    main_logger.info('Done.')
     if exit_after_attempt:
         sys.exit(0)
 
@@ -46,7 +46,7 @@ if __name__ == '__main__':
     logging.getLogger('JoggerFS').setLevel(logging.INFO)
     logging.getLogger('MWT').setLevel(logging.INFO)
 
-    main_logger.logger.info("Will try to mount the FUSE bindings.")
+    main_logger.info("Will try to mount the FUSE bindings.")
     thread.start_new_thread(lambda: fs.main(), tuple())
     signal.signal(signal.SIGINT, umount_fuse)
     signal.signal(signal.SIGTERM, umount_fuse)

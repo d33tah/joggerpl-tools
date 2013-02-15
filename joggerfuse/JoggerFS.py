@@ -30,7 +30,7 @@ class JoggerFS(fuse.Fuse):
 
     def getattr(self, path):
         
-        self.logger.logger.debug("getattr('%s')" % path)
+        self.logger.debug("getattr('%s')" % path)
         
         st = fuse.Stat()
         
@@ -81,7 +81,7 @@ class JoggerFS(fuse.Fuse):
     
     def read(self, path, size, offset):
         
-        self.logger.logger.debug("read(path='%s', size=%s offset=%s)" % (path, 
+        self.logger.debug("read(path='%s', size=%s offset=%s)" % (path, 
             size, offset))
         
         if path.startswith('/files'):
@@ -112,7 +112,7 @@ class JoggerFS(fuse.Fuse):
     
     def readdir(self, path, offset):
         
-        self.logger.logger.debug("readdir(path='%s', offset=%s)" % (path, offset))
+        self.logger.debug("readdir(path='%s', offset=%s)" % (path, offset))
         root = [fuse.Direntry(x) for x in ('files', 'szablon')]
         szablon = [fuse.Direntry(x) for x in (
                                               'glowna.html', 
