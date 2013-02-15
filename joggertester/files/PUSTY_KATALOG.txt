@@ -1,0 +1,3 @@
+Katalog "files" jest pusty w domyślnej instalacji Joggertestera. Skopiuj tu
+wszystkie pliki, które odwołują się do katalogu "files" z serwisu jogger.pl.
+Następnie możesz usunąć niniejszy plik.

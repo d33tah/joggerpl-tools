@@ -4,6 +4,7 @@ from django import template
 from django.template import Context
 from django.http import HttpResponse
 from django.db.models import Count
+from django.conf import settings
 
 from models import Wpis, GrupaLinkow, Kategoria
 from slowniki_tagow import tagi, bezposrednio
@@ -23,7 +24,7 @@ def renderuj_szablon(nazwa_pliku):
 
 def glowna(request):
     
-    surowy = renderuj_szablon('szablony/glowna.html')
+    surowy = renderuj_szablon(settings.PROJECT_DIR + '/szablony/glowna.html')
     
     html = template.Template(surowy).render(Context({
              'wpisy' : Wpis.objects.all(),
@@ -40,7 +41,7 @@ def komentarze(request, wpis_id):
     if wpis_id.endswith('/'):
         wpis_id = wpis_id[:-1]
         
-    surowy = renderuj_szablon('szablony/komentarze.html')
+    surowy = renderuj_szablon(settings.PROJECT_DIR + 'szablony/komentarze.html')
     
     html = template.Template(surowy).render(Context({
              'wpis' : Wpis.objects.get(entry_id = wpis_id),
