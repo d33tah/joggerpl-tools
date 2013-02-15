@@ -92,3 +92,26 @@ zagnieżdżenie tagów BLOCK, co może umożliwić atak DoS.
 2. Zmienna "wpis" jest dla wygody tworzona w ENTRY_BLOCK widoku ze wpisami
 oraz przekazywana szablonowi w widoku komentarzy.
 3. {{ oraz {% nie są escape'owane w pliku szablonu.
+
+LICENCJA
+--------
+
+Copyright 2013, Jacek Wielemborek
+
+Niniejszy program jest wolnym oprogramowaniem; możesz go
+rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej
+Licencji Publicznej GNU, wydanej przez Fundację Wolnego
+Oprogramowania - według wersji 2 tej Licencji lub (według twojego
+wyboru) którejś z późniejszych wersji.
+
+Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on
+użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
+gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
+ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do
+Powszechnej Licencji Publicznej GNU.
+
+Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz
+Powszechnej Licencji Publicznej GNU (GNU General Public License);
+jeśli nie - napisz do Free Software Foundation, Inc., 59 Temple
+Place, Fifth Floor, Boston, MA  02110-1301  USA
+

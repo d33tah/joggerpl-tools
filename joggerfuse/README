@@ -1,0 +1,114 @@
+NOTE: the english documentation is not currently available. Please contact me
+via e-mail if you have any questions.
+
+joggerfuse
+----------
+
+Niniejsza aplikacja jest przeznaczona dla użytkowników serwisu Jogger.pl. Po
+jej poprawnym uruchomieniu, zamienia zawartość wybranego katalogu tak, aby
+znajdowały się w nim pliki związane z wyglądem bloga. Wszystkie wprowadzone 
+zmiany powinny się automatycznie nanosić na stronę użytkownika tak, aby mógł
+on wygodnie korzystać z ulubionego edytora i dokonywać podglądu bezpośrednio
+w serwisie Jogger.pl
+
+INSTALACJA
+----------
+
+Joggerfuse używa technologii FUSE, niedostępnej w systemie Windows (więcej 
+informacji dostępne pod adresem http://fuse.sf.net/ ). Przed uruchomieniem
+warto się upewnić, że biblioteka python-fuse w wersji 0.2 jest zainstalowana,
+a użytkownik ma uprawnienia do montowania i odmontowania systemów plików FUSE.
+Pamiętaj, że dodanie użytkownika do grupy "fuse" zwykle wymaga ponownego 
+zalogowania w systemie - w razie wątpliwości, wykonaj komendę "groups".
+
+Potrzebny będzie także plik config.py zawierający dwie linijki - z loginem 
+i hasłem potrzebnymi do zalogowania w serwisie Jogger.pl. Przykład poniżej:
+
+jogger_login = 'jakis@jabberpl.org'
+jogger_haslo = 'tajnehaslo'
+
+Warto pamiętać o odebraniu uprawnień do odczytu pliku użytkownikom innym niż
+właściciel konta. Skrypt uruchamia się następująco:
+
+./main.py katalog -f
+
+Gdzie "katalog" należy zastąpić nazwą istniejącego katalogu, gdzie mają się
+pojawić dynamiczne pliki programu joggerfuse. Wykonanie komendy bez 
+przełącznika -f spowoduje uruchomienie programu w tle; wykonanie na nim 
+komendy kill spowoduje automatyczne odmontowanie katalogu od programu.
+
+BUGI, PROBLEMY
+--------------
+
+* Katalog files jest aktualnie tylko do odczytu - funkcje usuwania plików, 
+zmiany nazwy, zmiany zawartości oraz dodawania plików nie są zaimplementowane,
+* Wywołanie truncate() spowoduje skrócenie pliku dopiero przy następnej próbie
+zapisu,
+* Odczyt pliku na chwilę po jego zapisaniu będzie wskazywać jego starą treść.
+
+Jeżeli przy próbie uruchomienia programu zobaczysz błąd podobny do poniższego:
+
+Unhandled exception in thread started by <function <lambda> at 0xa103c6c>
+Traceback (most recent call last):
+  File "./main.py", line 50, in <lambda>
+    thread.start_new_thread(lambda: fs.main(), tuple())
+  File "/usr/lib/python2.6/dist-packages/fuse.py", line 757, in main
+    main(**d)
+
+Należy przeczytać linijkę nad błędem. Znane możliwe przyczyny pojawienia się
+błędu:
+
+1. Nieprawidłowy katalog docelowy,
+2. Brak uprawnień do montowania katalogów FUSE,
+3. Katalog już zamontowany.
+
+BEZPIECZEŃSTWO
+--------------
+
+Miej na uwadze, że ta aplikacja jest w dużym stopniu nie testowana i może 
+zawierać błędy. Z tego powodu zalecam zrobienie kopii zapasowej szablonu przed
+uruchomieniem programu. Niespodziewane błędy mogą doprowadzić do
+różnych niepożądanych działań, w tym wielokrotnych nieudanych prób logowania
+lub olbrzymiej ilości prób odczytu plików. Nie odpowiadam za żadne szkody 
+powstałe w wyniku użycia tej aplikacji, w szczególności utratę szablonu bloga 
+i blokadę konta wskutek łamania regulaminu serwisu. 
+
+
+
+JAK TO DZIAŁA?
+--------------
+
+Program ma zaimplementowane algorytmy opóźnionego zapisu i odczytu, aktualnie 
+w wersji podstawowej. Oznacza to, że po pierwszej próbie odczytu danego 
+zasobu, następny odczyt w ciągu dwóch sekund od poprzedniego spowoduje 
+załadowanie zasobu nie z internetu, ale z pamięci. Analogicznie, zapis do 
+pliku zostanie zatwierdzony dopiero po sekundzie od ostatniej próby zmiany
+treści pliku. Są to rozwiązania problemu odczytu/zapisu wielu małych buforów
+pliku.
+
+Wywołania readdir oraz getattr powodują faktyczne wczytanie całych plików 
+(w katalogu "szablony"; w przypadku katalogu "files", wielkości plików są 
+odczytywane jednokrotnie).
+
+LICENCJA
+--------
+
+Copyright 2013, Jacek Wielemborek
+
+Niniejszy program jest wolnym oprogramowaniem; możesz go
+rozprowadzać dalej i/lub modyfikować na warunkach Powszechnej
+Licencji Publicznej GNU, wydanej przez Fundację Wolnego
+Oprogramowania - według wersji 2 tej Licencji lub (według twojego
+wyboru) którejś z późniejszych wersji.
+
+Niniejszy program rozpowszechniany jest z nadzieją, iż będzie on
+użyteczny - jednak BEZ JAKIEJKOLWIEK GWARANCJI, nawet domyślnej
+gwarancji PRZYDATNOŚCI HANDLOWEJ albo PRZYDATNOŚCI DO OKREŚLONYCH
+ZASTOSOWAŃ. W celu uzyskania bliższych informacji sięgnij do
+Powszechnej Licencji Publicznej GNU.
+
+Z pewnością wraz z niniejszym programem otrzymałeś też egzemplarz
+Powszechnej Licencji Publicznej GNU (GNU General Public License);
+jeśli nie - napisz do Free Software Foundation, Inc., 59 Temple
+Place, Fifth Floor, Boston, MA  02110-1301  USA
+

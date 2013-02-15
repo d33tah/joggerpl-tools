@@ -4,7 +4,32 @@ import time
 
 from common_logger import common_logger
 
-## {{{ http://code.activestate.com/recipes/325905/ (r5)
+"""
+This file is part of joggerfuse.
+
+Joggerfuse is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation; either version 2 of the License, or
+(at your option) any later version.
+
+Joggerfuse is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with Foobar; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+"""
+
+"""
+This module was taken from here, with further modifications: 
+http://code.activestate.com/recipes/325905/
+
+The original code was licensed under Python Software Foundation License 
+(BSD-Style)
+"""
+
 class MWT(object):
     """Memoize With Timeout"""
     _caches = {}
