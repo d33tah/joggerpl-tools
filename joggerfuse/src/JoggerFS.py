@@ -10,7 +10,6 @@ import logging
 import fuse
 fuse.fuse_python_api = (0, 2)
 
-from config import jogger_login, jogger_haslo #potrzebny tylko dla tych 2 danych
 from JoggerScraper import JoggerScraper
 from common_logger import common_logger
 from MWT import MWT
@@ -43,7 +42,7 @@ class JoggerFS(fuse.Fuse):
     def __init__(self, *args, **kw):
         
         fuse.Fuse.__init__(self, *args, **kw)
-        self.jogger_scraper = JoggerScraper(jogger_login, jogger_haslo)
+        self.jogger_scraper = JoggerScraper()
         self.logger = common_logger("JoggerFS")
         
         self.delayed_writer = DelayedWriter()

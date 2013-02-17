@@ -8,8 +8,9 @@ import thread
 import signal
 import logging
 
-from JoggerFS import JoggerFS
-from common_logger import common_logger
+from src.JoggerFS import JoggerFS
+from src.common_logger import common_logger
+from config import jogger_haslo, jogger_login
 
 """
 This file is part of joggerfuse.
@@ -34,7 +35,13 @@ main_logger = common_logger('main')
 def do_testing():
     global main_logger
     main_logger.debug('do_testing')
-    print(tuple(os.walk('katalog')))
+    katalog_contents = (tuple(os.walk('katalog')))
+    for walk_tuple in katalog_contents:
+        root = walk_tuple[0] + '/'
+        for directory in walk_tuple[1]:
+            os.stat(root+directory)
+        for a_file in walk_tuple[2]:
+            os.stat(root+a_file)
 
 def sleep_until_ctrc():
     global main_logger
@@ -60,6 +67,7 @@ if __name__ == '__main__':
         testing = True
         
     fs = JoggerFS()
+    fs.jogger_scraper.set_login(jogger_login, jogger_haslo)
     fs.parse(errex=1)
     
     #logging.getLogger('JoggerFS').setLevel(logging.INFO)

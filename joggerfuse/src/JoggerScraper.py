@@ -29,11 +29,12 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 class JoggerScraper(mechanize.Browser):
     
-    def __init__(self, jogger_login, jogger_haslo):
+    def __init__(self):
         mechanize.Browser.__init__(self)
-        self.login = jogger_login
-        self.haslo = jogger_haslo
         self.logger = common_logger('JoggerScraper')
+        
+    def set_login(self, jogger_login, jogger_haslo):
+        self.login, self.haslo = jogger_login, jogger_haslo
         
     def __do_get(self, url):
         drzewo = html.fromstring(self.open(url).read())
