@@ -43,7 +43,7 @@ class DelayedWriter:
             self.paths[path]['buffer'] = self.paths[path]['fun_read']()
             
         tmp = list(self.paths[path]['buffer'])
-        tmp[offset:offset+len(_buffer)] = list(_buffer)
+        tmp[offset:offset + len(_buffer)] = list(_buffer)
         self.paths[path]['buffer'] = ''.join(tmp)
         
         self.paths[path]['last_update'] = time.time()

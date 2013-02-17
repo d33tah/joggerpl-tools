@@ -57,7 +57,7 @@ class JoggerScraper(mechanize.Browser):
         drzewo = self.__do_get('https://login.jogger.pl/templates/files/')
         for plik in drzewo.xpath('//td/a'):
             nazwa_pliku = plik.text_content()
-            #wielkosc jest dwa td'ki na prawo od nazwy pliku
+            # wielkosc jest dwa td'ki na prawo od nazwy pliku
             wielkosc = int(plik.getparent().getnext().getnext().text_content())
             ret[nazwa_pliku] = {}
             ret[nazwa_pliku]['rozmiar'] = wielkosc
@@ -67,7 +67,7 @@ class JoggerScraper(mechanize.Browser):
     def __zwroc_textarea(self, url):
         drzewo = self.__do_get(url)
         textarea = drzewo.xpath('//textarea')
-        assert(len(textarea)==1)
+        assert(len(textarea) == 1)
         return textarea[0].text_content()
         
     @MWT()
@@ -78,19 +78,19 @@ class JoggerScraper(mechanize.Browser):
     @MWT()
     def pobierz_szablon_komentarze(self):
         self.logger.debug('pobierz_szablon_komentarze')
-        return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/'+\
+        return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/' + \
                                      '?file=comments')
         
     @MWT()
     def pobierz_szablon_strony(self):
         self.logger.debug('pobierz_szablon_strony')
-        raise NotImplementedError() #są czary-mary z URLem
+        raise NotImplementedError()  # są czary-mary z URLem
                                     # który trzeba najpierw odwiedzić
                                     
     @MWT()
     def pobierz_szablon_logowanie(self):
         self.logger.debug('pobierz_szablon_logowanie')
-        return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/'+\
+        return self.__zwroc_textarea('https://login.jogger.pl/templates/edit/' + \
                                      '?file=login')
         
     def zmien_szablon_glowna(self, _buffer):

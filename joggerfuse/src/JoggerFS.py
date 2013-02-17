@@ -47,20 +47,20 @@ class JoggerFS(fuse.Fuse):
         
         self.delayed_writer = DelayedWriter()
         
-        self.delayed_writer.register('/szablon/glowna.html', 
-             lambda: self.jogger_scraper.pobierz_szablon_glowna().encode('utf-8'), 
+        self.delayed_writer.register('/szablon/glowna.html',
+             lambda: self.jogger_scraper.pobierz_szablon_glowna().encode('utf-8'),
              lambda x: self.jogger_scraper.zmien_szablon_glowna(x))
         
-        self.delayed_writer.register('/szablon/komentarze.html', 
-             lambda: self.jogger_scraper.pobierz_szablon_komentarze().encode('utf-8'), 
+        self.delayed_writer.register('/szablon/komentarze.html',
+             lambda: self.jogger_scraper.pobierz_szablon_komentarze().encode('utf-8'),
              lambda x: self.jogger_scraper.zmien_szablon_komentarze(x))        
         
-        self.delayed_writer.register('/szablon/strony.html', 
-             lambda: self.jogger_scraper.pobierz_szablon_strony().encode('utf-8'), 
+        self.delayed_writer.register('/szablon/strony.html',
+             lambda: self.jogger_scraper.pobierz_szablon_strony().encode('utf-8'),
              lambda x: self.jogger_scraper.zmien_szablon_strony(x))
         
-        self.delayed_writer.register('/szablon/logowanie.html', 
-             lambda: self.jogger_scraper.pobierz_szablon_logowanie().encode('utf-8'), 
+        self.delayed_writer.register('/szablon/logowanie.html',
+             lambda: self.jogger_scraper.pobierz_szablon_logowanie().encode('utf-8'),
              lambda x: self.jogger_scraper.zmien_szablon_logowanie(x))
                 
     def getattr(self, path):
@@ -97,13 +97,13 @@ class JoggerFS(fuse.Fuse):
             
             szukany = path[len('/szablon/'):]
             
-            if szukany=='glowna.html':
+            if szukany == 'glowna.html':
                 bufor = self.jogger_scraper.pobierz_szablon_glowna()
-            elif szukany=='komentarze.html':
+            elif szukany == 'komentarze.html':
                 bufor = self.jogger_scraper.pobierz_szablon_komentarze()
-            elif szukany=='strony.html':
+            elif szukany == 'strony.html':
                 bufor = self.jogger_scraper.pobierz_szablon_komentarze()
-            elif szukany=='logowanie.html':
+            elif szukany == 'logowanie.html':
                 bufor = self.jogger_scraper.pobierz_szablon_logowanie()
             else:
                 return -errno.ENOENT
@@ -116,7 +116,7 @@ class JoggerFS(fuse.Fuse):
     
     def read(self, path, size, offset):
         
-        self.logger.debug("read(path='%s', size=%s offset=%s)" % (path, 
+        self.logger.debug("read(path='%s', size=%s offset=%s)" % (path,
             size, offset))
         
         if path.startswith('/files'):
@@ -125,23 +125,23 @@ class JoggerFS(fuse.Fuse):
             files = self.jogger_scraper.pobierz_files()
             if not szukany in files:
                 return -errno.ENOENT
-            return get_url(files[szukany]['url'])[offset:offset+size]
+            return get_url(files[szukany]['url'])[offset:offset + size]
         
         elif path.startswith('/szablon'):
             
             szukany = path[len('/szablon/'):]
             
-            if szukany=='glowna.html':
+            if szukany == 'glowna.html':
                 ret = self.jogger_scraper.pobierz_szablon_glowna()
-            elif szukany=='komentarze.html':
+            elif szukany == 'komentarze.html':
                 ret = self.jogger_scraper.pobierz_szablon_komentarze()
-            elif szukany=='strony.html':
+            elif szukany == 'strony.html':
                 ret = self.jogger_scraper.pobierz_szablon_komentarze()
-            elif szukany=='logowanie.html':
+            elif szukany == 'logowanie.html':
                 ret = self.jogger_scraper.pobierz_szablon_logowanie()
             else:
                 return -errno.ENOENT
-            return ret.encode('utf-8')[offset:offset+size]
+            return ret.encode('utf-8')[offset:offset + size]
         
         return -errno.ENOENT
     
@@ -150,15 +150,15 @@ class JoggerFS(fuse.Fuse):
         self.logger.debug("readdir(path='%s', offset=%s)" % (path, offset))
         root = [fuse.Direntry(x) for x in ('files', 'szablon')]
         szablon = [fuse.Direntry(x) for x in (
-                                              'glowna.html', 
-                                              'komentarze.html', 
-                                              #'strony.html', 
+                                              'glowna.html',
+                                              'komentarze.html',
+                                              # 'strony.html', 
                                               'logowanie.html')]
-        if path=='/':
+        if path == '/':
             return root
-        elif path=='/szablon':
+        elif path == '/szablon':
             return szablon
-        elif path=='/files':
+        elif path == '/files':
             files = self.jogger_scraper.pobierz_files()
             return [fuse.Direntry(x) for x in files.keys()]
         else:
@@ -175,19 +175,19 @@ class JoggerFS(fuse.Fuse):
             
             self.logger.debug('truncate(path="%s", length=%s)' % (path, length))
             if 'buffer' not in self.delayed_writer.paths[path]:
-                self.delayed_writer.paths[path]['buffer'] = '\0'*length
+                self.delayed_writer.paths[path]['buffer'] = '\0' * length
                 return 0
             
-            if length==0:
+            if length == 0:
                 self.delayed_writer.paths[path]['buffer'] = ''
                 self.logger.debug('truncated.')
                 return 0
 
             _buffer = self.delayed_writer.paths[path]['buffer']
-            if(len(_buffer))>length:
+            if(len(_buffer)) > length:
                 self.delayed_writer.paths[path]['buffer'] = buffer[:length]
             else:
-                self.delayed_writer.paths[path]['buffer'] += '\0'*(length-len(_buffer))
+                self.delayed_writer.paths[path]['buffer'] += '\0' * (length - len(_buffer))
             return 0
                 
         except KeyError:

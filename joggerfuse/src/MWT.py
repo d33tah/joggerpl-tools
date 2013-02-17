@@ -35,7 +35,7 @@ class MWT(object):
     _caches = {}
     _timeouts = {}
     
-    def __init__(self,timeout=3):
+    def __init__(self, timeout=3):
         self.timeout = timeout
         self.logger = common_logger('MWT')
         
@@ -64,7 +64,7 @@ class MWT(object):
                 else:
                     self.logger.debug('hit the cache: %s' % f.func_name)
             except KeyError:
-                v = self.cache[key] = f(*args,**kwargs),time.time()
+                v = self.cache[key] = f(*args, **kwargs), time.time()
             return v[0]
         func.func_name = f.func_name
         

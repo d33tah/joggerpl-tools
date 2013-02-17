@@ -39,9 +39,9 @@ def do_testing():
     for walk_tuple in katalog_contents:
         root = walk_tuple[0] + '/'
         for directory in walk_tuple[1]:
-            os.stat(root+directory)
+            os.stat(root + directory)
         for a_file in walk_tuple[2]:
-            os.stat(root+a_file)
+            os.stat(root + a_file)
 
 def sleep_until_ctrc():
     global main_logger
@@ -52,7 +52,7 @@ def sleep_until_ctrc():
         except KeyboardInterrupt:
             break
 
-def umount_fuse(signum = None, frame = None, exit_after_attempt = True):
+def umount_fuse(signum=None, frame=None, exit_after_attempt=True):
     global main_logger
     main_logger.info('Unmounting...')
     os.system("fusermount -u katalog")
@@ -62,7 +62,7 @@ def umount_fuse(signum = None, frame = None, exit_after_attempt = True):
 
 if __name__ == '__main__':
     
-    if len(sys.argv)<2:
+    if len(sys.argv) < 2:
         sys.argv += ['-f', 'katalog']
         testing = True
         
@@ -70,7 +70,7 @@ if __name__ == '__main__':
     fs.jogger_scraper.set_login(jogger_login, jogger_haslo)
     fs.parse(errex=1)
     
-    #logging.getLogger('JoggerFS').setLevel(logging.INFO)
+    # logging.getLogger('JoggerFS').setLevel(logging.INFO)
     logging.getLogger('MWT').setLevel(logging.INFO)
 
     main_logger.info("Will try to mount the FUSE bindings.")
@@ -84,5 +84,5 @@ if __name__ == '__main__':
         time.sleep(2)
         do_testing()
         
-    umount_fuse(exit_after_attempt = False)
+    umount_fuse(exit_after_attempt=False)
     
