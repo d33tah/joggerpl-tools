@@ -18,6 +18,7 @@ def fetch_users():
     ret = []
     while True:
         url = "http://jogger.pl/users/?page=%d&ord=desc" % i
+        print("Pobieram %s" % url)
         body = urlopen(url).read()
         body = body.decode('utf-8')
         t = html.fromstring(body)
