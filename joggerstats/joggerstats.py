@@ -28,6 +28,7 @@ def fetch_users():
         for row in rows:
             data = {}
             data['username'] = unicode(row[0].text_content())
+            data['url'] = unicode(row[0][0].get('href'))
             data['xmpp_status'] = unicode(row[1].text_content())
             data['registered'] = unicode(row[2].text_content())
             data['num_entries'] = int(row[3].text_content())
