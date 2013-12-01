@@ -95,7 +95,8 @@
         "content_short": "Przyk\u0142adowa tre\u015b\u0107 wpisu, lorem ipsum i takie tam.",
         "date_year": "2013",
         "date_day": "07",
-        "subject": "Wpis testowy1"
+        "subject": "Wpis testowy1",
+        "kategoria_id":1
     }
 }, {
     "pk": 3,
@@ -107,7 +108,8 @@
         "content_short": "Tutaj jest drugi wpis. Powinien by\u0107 poni\u017cej.",
         "date_year": "2013",
         "date_day": "06",
-        "subject": "Wpis testowy2"
+        "subject": "Wpis testowy2",
+        "kategoria_id":1
     }
 }, {
     "pk": 4,
@@ -119,7 +121,8 @@
         "content_short": "Ten wpis powinien by\u0107 bez komentarzy.",
         "date_year": "2013",
         "date_day": "01",
-        "subject": "Wpis bez komentarzy."
+        "subject": "Wpis bez komentarzy.",
+        "kategoria_id":2
     }
 }, {
     "pk": 1,
@@ -411,5 +414,19 @@
         "codename": "delete_site",
         "name": "Can delete site",
         "content_type": 6
+    }
+}, {
+    "pk": 1,
+    "model": "joggertester.kategoria",
+    "fields": {
+        "href_descr": "kategoria_pierwsza",
+        "title": "Kategoria pierwsza"
+    }
+}, {
+    "pk": 2,
+    "model": "joggertester.kategoria",
+    "fields": {
+        "href_descr": "kategoria_pierwsza",
+        "title": "Kategoria pierwsza"
     }
 }]
