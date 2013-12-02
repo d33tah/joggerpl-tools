@@ -96,7 +96,7 @@
         "date_year": "2013",
         "date_day": "07",
         "subject": "Wpis testowy1",
-        "category_id":1
+        "kategoria_id":1
     }
 }, {
     "pk": 3,
@@ -109,7 +109,7 @@
         "date_year": "2013",
         "date_day": "06",
         "subject": "Wpis testowy2",
-        "category_id":1
+        "kategoria_id":1
     }
 }, {
     "pk": 4,
@@ -122,7 +122,7 @@
         "date_year": "2013",
         "date_day": "01",
         "subject": "Wpis bez komentarzy.",
-        "category_id":2
+        "kategoria_id":2
     }
 }, {
     "pk": 1,
@@ -428,5 +428,18 @@
         "href_descr": "kategoria_pierwsza",
         "title": "Kategoria pierwsza"
     }
-}
-]
+}, {
+    "pk": 1,
+    "model": "joggertester.kategoria",
+    "fields": {
+        "href_descr": "kategoria_pierwsza",
+        "title": "Kategoria pierwsza"
+    }
+}, {
+    "pk": 2,
+    "model": "joggertester.kategoria",
+    "fields": {
+        "href_descr": "kategoria_pierwsza",
+        "title": "Kategoria pierwsza"
+    }
+}]
