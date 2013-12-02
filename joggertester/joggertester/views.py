@@ -59,7 +59,7 @@ def komentarze(request, wpis_id):
     if wpis_id.endswith('/'):
         wpis_id = wpis_id[:-1]
         
-    surowy = renderuj_szablon(settings.PROJECT_DIR + 'szablony/komentarze.html')
+    surowy = renderuj_szablon(settings.PROJECT_DIR + '/szablony/komentarze.html')
     
     html = template.Template(surowy).render(Context({
              'wpis' : Wpis.objects.get(entry_id = wpis_id),
