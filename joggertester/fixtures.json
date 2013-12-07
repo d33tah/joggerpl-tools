@@ -414,7 +414,8 @@
         "codename": "delete_site",
         "name": "Can delete site",
         "content_type": 6
-    }, {
+    }
+}, {
     "pk": 1,
     "model": "joggertester.kategoria",
     "fields": {
