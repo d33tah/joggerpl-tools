@@ -1,4 +1,4 @@
-NOTE: the english documentation is not currently available. Please contact me
+NOTE: the english documentation is currently not available. Please contact me
 via e-mail if you have any questions.
 
 joggertester - narzędzie do testowania szablonów dla jogger.pl
