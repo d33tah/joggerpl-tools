@@ -87,7 +87,7 @@ tłumaczone na język silnika szablonów Django.
 BEZPIECZEŃSTWO
 --------------
 
-1. Na ten moment skrypt nie sprawdza Joggerowej składni. Możliwe jest dowolone 
+1. Na ten moment skrypt nie sprawdza Joggerowej składni. Możliwe jest dowlone 
 zagnieżdżenie tagów BLOCK, co może umożliwić atak DoS.
 2. Zmienna "wpis" jest dla wygody tworzona w ENTRY_BLOCK widoku ze wpisami
 oraz przekazywana szablonowi w widoku komentarzy.
