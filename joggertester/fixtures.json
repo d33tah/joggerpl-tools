@@ -420,7 +420,7 @@
     "model": "joggertester.kategoria",
     "fields": {
         "href_descr": "kategoria_pierwsza",
-        "name": "Kategoria pierwsza"
+        "title": "Kategoria pierwsza"
     }
 }, {
     "pk": 2,
