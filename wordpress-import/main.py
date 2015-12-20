@@ -79,7 +79,8 @@ class Main(object):
             comment.author = comment_node.xpath('./nick')[0].text
             comment.author_url = comment_node.xpath('./nick_url')[0].text
             try:
-                self.client.call(wordpress_xmlrpc.methods.comments.NewComment(post_id, comment))
+                comment_id = self.client.call(wordpress_xmlrpc.methods.comments.NewComment(post_id, comment))
+                self.client.call(wordpress_xmlrpc.methods.comments.EditComment(comment_id, comment))
             except Exception as e:
                 print(e)
 
