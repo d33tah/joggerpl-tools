@@ -25,21 +25,29 @@ class Main(object):
             self.handle_post(entry)
 
     def handle_post(self, entry):
+
         post = wordpress_xmlrpc.WordPressPost()
 
         post.title = entry.xpath('./subject')[0].text
-        post.content = entry.xpath('./body')[0].text
-        post.post_status = 'publish'
+
+        body = entry.xpath('./body')[0].text
+        post.content = body
+        if '<EXCERPT>' in body:
+            post.excerpt = body[:body.find('<EXCERPT>')]
+
+        if int(entry.xpath('./level_id')[0].text) == 0:
+            post.post_status = 'publish'
+
+        if entry.xpath('./trackback')[0].text != '':
+            sys.stderr.write("trackback not empty!\n")
+
         post.comment_status = 'open'
+        post.date = dateutil.parser.parse(entry.xpath('./date')[0].text)
+        post.slug = entry.xpath('./permalink')[0].text
         # TODO:
-        # date
         # categories
-        # comment_mode
-        # level
         # tags
-        # permalink
-        # trackback
-        # excerpt
+        # comment_mode
         # geshi
         # self-linki
 
