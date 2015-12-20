@@ -12,6 +12,7 @@ import lxml.etree
 import wordpress_xmlrpc
 import dateutil.parser
 import sys
+import re
 
 class Main(object):
 
@@ -31,6 +32,12 @@ class Main(object):
         post.title = entry.xpath('./subject')[0].text
 
         body = entry.xpath('./body')[0].text
+
+        if '{geshi' in body:
+            body = re.sub('{geshi lang=([^ ]+).*?}(.*?){/geshi}',
+                          '<pre lang="\\1">\\2</pre>', body,
+                          flags=re.DOTALL | re.MULTILINE)
+
         post.content = body
         if '<EXCERPT>' in body:
             post.excerpt = body[:body.find('<EXCERPT>')]
