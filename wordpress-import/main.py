@@ -45,7 +45,7 @@ class Main(object):
         if int(entry.xpath('./level_id')[0].text) == 0:
             post.post_status = 'publish'
 
-        if entry.xpath('./trackback')[0].text != '':
+        if entry.xpath('./trackback')[0].text:
             sys.stderr.write("trackback not empty!\n")
 
         post.comment_status = 'open'
