@@ -63,16 +63,6 @@ class Main(object):
         comments = entry.xpath('./comment')
         for n, comment_node in enumerate(comments, 1):
             print(">%d/%d" % (n, len(comments)))
-            '''
-            <comment>
-                <date>2008-03-13 22:11:11</date>
-                <nick>bobiko</nick>
-                <nick_url>http://bobiko.jogger.pl</nick_url>
-                <body>BODY</body>
-                <ip>IP</ip>
-                <trackback></trackback>
-            </comment>
-            '''
             comment = wordpress_xmlrpc.WordPressComment()
             comment.content = comment_node.xpath('./body')[0].text
             comment.date = dateutil.parser.parse(comment_node.xpath('./date')[0].text)
