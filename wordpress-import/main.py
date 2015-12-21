@@ -55,7 +55,6 @@ class Main(object):
         # categories
         # tags
         # comment_mode
-        # geshi
         # self-linki
 
         post_id = self.client.call(wordpress_xmlrpc.methods.posts.NewPost(post))
