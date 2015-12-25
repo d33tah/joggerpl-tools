@@ -51,8 +51,12 @@ class Main(object):
         post.comment_status = 'open'
         post.date = dateutil.parser.parse(entry.xpath('./date')[0].text)
         post.slug = entry.xpath('./permalink')[0].text
+
+        categories = []
+        for category in entry.xpath('./category'):
+            categories += [category.text]
+        post.terms_names = { 'category': categories }
         # TODO:
-        # categories
         # tags
         # comment_mode
         # self-linki
