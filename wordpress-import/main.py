@@ -5,6 +5,7 @@ Imports Jogger.pl XML exported file to a Wordpress blog.
 
 Sample usage:
 
+pip install -r requirements.txt  # first time only; might require sudo
 ./main.py http://localhost/xmlrpc.php user pass /tmp/20151220_1945_deetah.xml
 """
 
