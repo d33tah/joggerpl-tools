@@ -25,4 +25,4 @@ zalogowany pod adresem http://blog.example.com, login to ```admin```, hasło to
 ```haslo```, a nazwa pliku to ```wpisy.xml``` i znajduje się w tym samym
 katalogu co plik ```main.py```, należy wykonać komendę:
 
-```python main.py http://blog.example.com/xmlrpc.php admin haslo wpisy.xml```
+    python main.py http://blog.example.com/xmlrpc.php admin haslo wpisy.xml
