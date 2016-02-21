@@ -21,8 +21,8 @@ Po zainstalowaniu bibliotek należy ustalić adres do bloga z zainstalowanym
 wordpressem - program **wordpress-import** potrzebuje znaleźć tam plik
 ```xmlrpc.php```. Skrypt wymaga też podania loginu i hasła do docelowego
 bloga oraz nazwy importowanego pliku. Przykładowo, jeżeli Wordpress jest
-zalogowany pod adresem http://moj-blog.pl, login to ```admin```, hasło to
+zalogowany pod adresem http://blog.example.com, login to ```admin```, hasło to
 ```haslo```, a nazwa pliku to ```wpisy.xml``` i znajduje się w tym samym
 katalogu co plik ```main.py```, należy wykonać komendę:
 
-```python main.py http://moj-blog.pl/xmlrpc.php admin haslo wpisy.xml```
+```python main.py http://blog.example.com/xmlrpc.php admin haslo wpisy.xml```
