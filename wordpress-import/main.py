@@ -6,7 +6,7 @@ Imports Jogger.pl XML exported file to a Wordpress blog.
 Sample usage:
 
 pip install -r requirements.txt  # first time only; might require sudo
-./main.py http://localhost/xmlrpc.php user pass /tmp/20151220_1945_deetah.xml
+./main.py http://localhost/xmlrpc.php wp_user wp_pass 20151220_1945_deetah.xml
 """
 
 import lxml.etree
@@ -80,4 +80,8 @@ class Main(object):
 
 
 if __name__ == '__main__':
+    if len(sys.argv) < 4:
+        sys.exit(("Usage: %s http://localhost/xmlrpc.php "
+                  "wordpress_username wordpress_password "
+                  "jogger_exported.xml") % sys.argv[0])
     Main().main(*sys.argv[1:])

@@ -1,2 +1,4 @@
-python-wordpress
 lxml
+python-wordpress-xmlrpc
+# TODO: is this one actually necessary?
+python-wordpress
