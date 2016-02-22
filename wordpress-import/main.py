@@ -18,6 +18,7 @@ import dateutil.parser
 import sys
 import re
 import signal
+import os
 
 PARSE_TIMEOUT = 2
 
@@ -100,4 +101,11 @@ if __name__ == '__main__':
         sys.exit(("Usage: %s http://localhost/xmlrpc.php "
                   "wordpress_username wordpress_password "
                   "jogger_exported.xml") % sys.argv[0])
-    Main().main(*sys.argv[1:])
+    try:
+        Main().main(*sys.argv[1:])
+    finally:
+        if os.environ.get('REMOVE_ON_EXIT'):
+            try:
+                os.unlink(sys.argv[-1])
+            except Exception:
+                pass
