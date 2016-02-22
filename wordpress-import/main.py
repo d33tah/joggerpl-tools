@@ -40,7 +40,7 @@ class Main(object):
             print("%d/%d" % (n, len(entries)))
             self.handle_post(entry)
 
-        print("Done")
+        print("Done. You can now change wordpress password.")
 
     def handle_post(self, entry):
 

@@ -105,6 +105,17 @@ def index():
                 <label for="file">Plik wyeksportowany przez jogger.pl:</label>
                 <input id="file" type="file" name="file">
             </div>
+            <p>
+            <strong>Uwaga:</strong>
+            <ul>
+                <li>Plik XML ze wpisami może zawierać też wpisy prywatne
+                    (poziom 1 i powyżej). Jeżeli nie chcesz ich przesyłać na
+                    ten serwer, użyj terminalowej wersji tej strony,</li>
+                <li>Po zaimportowaniu wpisów powinieneś
+                    <strong>zmienić hasło</strong> do Wordpressa.</li>
+            </ul>
+            </p>
+
             <button type="submit"class="btn btn-default">Wyślij</button>
         </form>
     """
