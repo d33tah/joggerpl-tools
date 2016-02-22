@@ -77,7 +77,7 @@ class Main(object):
                 self.client.call(wordpress_xmlrpc.methods.comments.EditComment(comment_id, comment))
             except Exception as e:
                 print(repr(e))
-    print("Done")
+        print("Done")
 
 
 if __name__ == '__main__':
