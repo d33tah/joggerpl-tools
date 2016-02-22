@@ -79,19 +79,23 @@ class Main(object):
         # comment_mode
         # self-linki
 
-        post_id = self.client.call(wordpress_xmlrpc.methods.posts.NewPost(post))
+        new_post = wordpress_xmlrpc.methods.posts.NewPost(post)
+        post_id = self.client.call(new_post)
 
         comments = entry.findall('./comment')
         for n, comment_node in enumerate(comments, 1):
             print(">%d/%d" % (n, len(comments)))
             comment = wordpress_xmlrpc.WordPressComment()
             comment.content = comment_node.findall('./body')[0].text
-            comment.date = dateutil.parser.parse(comment_node.findall('./date')[0].text)
+            tmp_date_txt = comment_node.findall('./date')[0].text
+            comment.date_created = dateutil.parser.parse(tmp_date_txt)
             comment.author = comment_node.findall('./nick')[0].text
             comment.author_url = comment_node.findall('./nick_url')[0].text
             try:
-                comment_id = self.client.call(wordpress_xmlrpc.methods.comments.NewComment(post_id, comment))
-                self.client.call(wordpress_xmlrpc.methods.comments.EditComment(comment_id, comment))
+                new_comment wordpress_xmlrpc.methods.comments.NewComment
+                comment_id = self.client.call(new_comment(post_id, comment))
+                edit_comment = wordpress_xmlrpc.methods.comments.EditComment
+                self.client.call(edit_comment(comment_id, comment))
             except Exception as e:
                 print(repr(e))
 
