@@ -14,6 +14,9 @@ import wordpress_xmlrpc
 import dateutil.parser
 import sys
 import re
+import signal
+
+PARSE_TIMEOUT = 2
 
 class Main(object):
 
@@ -22,7 +25,12 @@ class Main(object):
         # This is just to make sure that the credentials are OK before we jump
         # to XML parsing.
         self.client.call(wordpress_xmlrpc.methods.users.GetUsers())
+
+        # Parse the XML. Give 2 seconds for parsing to prevent abuse.
+        signal.alarm(PARSE_TIMEOUT)
         self.tree = lxml.etree.parse(path)
+        signal.alarm(0)
+
         entries = self.tree.xpath('//entry')
         for n, entry in enumerate(entries, 1):
 
