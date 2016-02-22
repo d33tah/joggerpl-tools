@@ -37,6 +37,8 @@ class Main(object):
             print("%d/%d" % (n, len(entries)))
             self.handle_post(entry)
 
+        print("Done")
+
     def handle_post(self, entry):
 
         post = wordpress_xmlrpc.WordPressPost()
@@ -88,7 +90,6 @@ class Main(object):
                 self.client.call(wordpress_xmlrpc.methods.comments.EditComment(comment_id, comment))
             except Exception as e:
                 print(repr(e))
-        print("Done")
 
 
 if __name__ == '__main__':
