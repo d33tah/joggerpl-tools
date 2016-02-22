@@ -16,6 +16,7 @@ ALLOWED_EXTENSIONS = set(['xml'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
 
 BOOTSTRAP_BOILERPLATE = """<!DOCTYPE html>
 <html lang="pl">
