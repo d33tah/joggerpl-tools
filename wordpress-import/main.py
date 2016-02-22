@@ -92,7 +92,7 @@ class Main(object):
             comment.author = comment_node.findall('./nick')[0].text
             comment.author_url = comment_node.findall('./nick_url')[0].text
             try:
-                new_comment wordpress_xmlrpc.methods.comments.NewComment
+                new_comment = wordpress_xmlrpc.methods.comments.NewComment
                 comment_id = self.client.call(new_comment(post_id, comment))
                 edit_comment = wordpress_xmlrpc.methods.comments.EditComment
                 self.client.call(edit_comment(comment_id, comment))
