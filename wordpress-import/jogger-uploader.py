@@ -10,7 +10,7 @@ import uuid
 import resource
 import time
 
-UPLOAD_FOLDER = '/tmp/jogger-uploader'
+UPLOAD_FOLDER = '/var/tmp/'
 ALLOWED_EXTENSIONS = set(['xml'])
 
 app = Flask(__name__)
