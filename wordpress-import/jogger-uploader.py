@@ -8,6 +8,7 @@ import os
 import subprocess
 import uuid
 import resource
+import time
 
 UPLOAD_FOLDER = '/tmp/jogger-uploader'
 ALLOWED_EXTENSIONS = set(['xml'])
@@ -149,6 +150,8 @@ def index():
             request.form['url'], request.form['login'], request.form['pass'],
             filename
         ], bufsize=1, stderr=subprocess.STDOUT, stdout=logf, preexec_fn=pfn)
+    # sleep for three seconds so we have a change of showing something in a log
+    time.sleep(3.0)
     return redirect('/show/%s.txt' % logfuuid)
 
 @app.route('/show/<path:path>')
