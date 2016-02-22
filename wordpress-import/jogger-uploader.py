@@ -10,6 +10,7 @@ import uuid
 import resource
 import time
 
+MAIN_PY_PATH = '/home/d33tah/workspace/joggerpl-tools/wordpress-import/main.py'
 UPLOAD_FOLDER = '/var/tmp/'
 ALLOWED_EXTENSIONS = set(['xml'])
 
@@ -145,8 +146,7 @@ def index():
         max_memory = 256 * 1024 * 1024  # 128 MiB
         resource.setrlimit(resource.RLIMIT_AS, (max_memory, max_memory))
     subprocess.Popen([
-            'python', '-u',
-            '/home/d/workspace/joggerpl-tools/wordpress-import/main.py',
+            'python', '-u', MAIN_PY_PATH,
             request.form['url'], request.form['login'], request.form['pass'],
             filename
         ], bufsize=1, stderr=subprocess.STDOUT, stdout=logf, preexec_fn=pfn)
