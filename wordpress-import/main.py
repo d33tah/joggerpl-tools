@@ -13,7 +13,6 @@ try:
     from defusedxml.ElementTree import parse
 except ImportError:
     from xml.etree.ElementTree import parse
-import lxml.etree
 import wordpress_xmlrpc
 import dateutil.parser
 import sys
