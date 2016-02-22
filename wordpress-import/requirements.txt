@@ -1,4 +1,4 @@
-lxml
+defusedxml
 python-wordpress-xmlrpc
 # TODO: is this one actually necessary?
 python-wordpress

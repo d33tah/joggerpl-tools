@@ -9,6 +9,10 @@ pip install -r requirements.txt  # first time only; might require sudo
 ./main.py http://localhost/xmlrpc.php wp_user wp_pass 20151220_1945_deetah.xml
 """
 
+try:
+    from defusedxml.ElementTree import parse
+except ImportError:
+    from xml.etree.ElementTree import parse
 import lxml.etree
 import wordpress_xmlrpc
 import dateutil.parser
@@ -28,10 +32,10 @@ class Main(object):
 
         # Parse the XML. Give 2 seconds for parsing to prevent abuse.
         signal.alarm(PARSE_TIMEOUT)
-        self.tree = lxml.etree.parse(path)
+        self.tree = parse(path)
         signal.alarm(0)
 
-        entries = self.tree.xpath('//entry')
+        entries = self.tree.findall('.//entry')
         for n, entry in enumerate(entries, 1):
 
             print("%d/%d" % (n, len(entries)))
@@ -43,9 +47,9 @@ class Main(object):
 
         post = wordpress_xmlrpc.WordPressPost()
 
-        post.title = entry.xpath('./subject')[0].text
+        post.title = entry.findall('./subject')[0].text
 
-        body = entry.xpath('./body')[0].text
+        body = entry.findall('./body')[0].text
 
         if '{geshi' in body:
             body = re.sub('{geshi lang=([^ ]+).*?}(.*?){/geshi}',
@@ -56,18 +60,18 @@ class Main(object):
         if '<EXCERPT>' in body:
             post.excerpt = body[:body.find('<EXCERPT>')]
 
-        if int(entry.xpath('./level_id')[0].text) == 0:
+        if int(entry.findall('./level_id')[0].text) == 0:
             post.post_status = 'publish'
 
-        if entry.xpath('./trackback')[0].text:
+        if entry.findall('./trackback')[0].text:
             sys.stderr.write("trackback not empty!\n")
 
         post.comment_status = 'open'
-        post.date = dateutil.parser.parse(entry.xpath('./date')[0].text)
-        post.slug = entry.xpath('./permalink')[0].text
+        post.date = dateutil.parser.parse(entry.findall('./date')[0].text)
+        post.slug = entry.findall('./permalink')[0].text
 
         categories = []
-        for category in entry.xpath('./category'):
+        for category in entry.findall('./category'):
             categories += [category.text]
         post.terms_names = { 'category': categories }
         # TODO:
@@ -77,14 +81,14 @@ class Main(object):
 
         post_id = self.client.call(wordpress_xmlrpc.methods.posts.NewPost(post))
 
-        comments = entry.xpath('./comment')
+        comments = entry.findall('./comment')
         for n, comment_node in enumerate(comments, 1):
             print(">%d/%d" % (n, len(comments)))
             comment = wordpress_xmlrpc.WordPressComment()
-            comment.content = comment_node.xpath('./body')[0].text
-            comment.date = dateutil.parser.parse(comment_node.xpath('./date')[0].text)
-            comment.author = comment_node.xpath('./nick')[0].text
-            comment.author_url = comment_node.xpath('./nick_url')[0].text
+            comment.content = comment_node.findall('./body')[0].text
+            comment.date = dateutil.parser.parse(comment_node.findall('./date')[0].text)
+            comment.author = comment_node.findall('./nick')[0].text
+            comment.author_url = comment_node.findall('./nick_url')[0].text
             try:
                 comment_id = self.client.call(wordpress_xmlrpc.methods.comments.NewComment(post_id, comment))
                 self.client.call(wordpress_xmlrpc.methods.comments.EditComment(comment_id, comment))
