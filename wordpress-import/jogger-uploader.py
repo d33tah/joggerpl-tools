@@ -111,7 +111,7 @@ def index():
                 <li>Plik XML ze wpisami może zawierać też wpisy prywatne
                     (poziom 1 i powyżej). Jeżeli nie chcesz ich przesyłać na
                     ten serwer, użyj terminalowej wersji tej strony,</li>
-                <li>Po zaimportowaniu wpisów powinieneś
+                <li>Po zaimportowaniu wpisów należy
                     <strong>zmienić hasło</strong> do Wordpressa.</li>
             </ul>
             </p>
