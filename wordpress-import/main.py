@@ -19,8 +19,20 @@ import sys
 import re
 import signal
 import os
+import socket
 
 PARSE_TIMEOUT = 2
+
+# http://www.underengineering.com/2014/07/24/monkey-patching-considered-harmless/
+def memoize(f):
+  global cache
+  cache = {}
+  def memf(*x):
+      if x not in cache:
+          cache[x] = f(*x)
+      return cache[x]
+  return memf
+socket.getaddrinfo = memoize(socket.getaddrinfo)
 
 class Main(object):
 
