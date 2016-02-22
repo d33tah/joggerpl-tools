@@ -7,7 +7,6 @@ from werkzeug import secure_filename
 import os
 import subprocess
 import uuid
-import re
 import resource
 
 UPLOAD_FOLDER = '/tmp/jogger-uploader'
