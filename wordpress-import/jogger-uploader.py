@@ -80,6 +80,7 @@ crossorigin="anonymous">
 </body>
 </html>"""
 
+
 @app.route("/", methods=['GET', 'POST'])
 def index():
     index_content = """
@@ -158,20 +159,22 @@ def index():
 
     subprocess_environment = dict(os.environ)
     subprocess_environment['REMOVE_ON_EXIT'] = '1'
+
     def pfn():
         # this function will be called before subprocess Python is run.
         # the limit is there to prevent denial of service by using all memory
         max_memory = 256 * 1024 * 1024  # 128 MiB
         resource.setrlimit(resource.RLIMIT_AS, (max_memory, max_memory))
     subprocess.Popen([
-            'python', '-u', MAIN_PY_PATH,
-            request.form['url'], request.form['login'], request.form['pass'],
-            filename
+        'python', '-u', MAIN_PY_PATH,
+        request.form['url'], request.form['login'], request.form['pass'],
+        filename
         ], bufsize=1, stderr=subprocess.STDOUT, stdout=logf, preexec_fn=pfn,
         env=subprocess_environment)
     # sleep for three seconds so we have a change of showing something in a log
     time.sleep(3.0)
     return redirect('/show/%s.txt' % logfuuid)
+
 
 @app.route('/show/<path:path>')
 def show(path):

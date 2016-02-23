@@ -24,16 +24,20 @@ import gzip
 
 PARSE_TIMEOUT = 2
 
+
 # http://www.underengineering.com/2014/07/24/monkey-patching-considered-harmless/
+# This is a DNS cache we introduce to avoid a thousands of lookups.
 def memoize(f):
-  global cache
-  cache = {}
-  def memf(*x):
-      if x not in cache:
-          cache[x] = f(*x)
-      return cache[x]
-  return memf
+    global cache
+    cache = {}
+
+    def memf(*x):
+        if x not in cache:
+            cache[x] = f(*x)
+        return cache[x]
+    return memf
 socket.getaddrinfo = memoize(socket.getaddrinfo)
+
 
 class Main(object):
 
@@ -90,7 +94,7 @@ class Main(object):
         categories = []
         for category in entry.findall('./category'):
             categories += [category.text]
-        post.terms_names = { 'category': categories }
+        post.terms_names = {'category': categories}
         # TODO:
         # tags
         # comment_mode
