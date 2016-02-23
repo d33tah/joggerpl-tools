@@ -20,6 +20,7 @@ import re
 import signal
 import os
 import socket
+import gzip
 
 PARSE_TIMEOUT = 2
 
@@ -44,7 +45,11 @@ class Main(object):
 
         # Parse the XML. Give 2 seconds for parsing to prevent abuse.
         signal.alarm(PARSE_TIMEOUT)
-        self.tree = parse(path)
+        if path.endswith('.gz'):
+            target = gzip.open(path)
+        else:
+            target = path
+        self.tree = parse(target)
         signal.alarm(0)
 
         entries = self.tree.findall('.//entry')

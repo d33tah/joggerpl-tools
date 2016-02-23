@@ -127,9 +127,13 @@ def index():
                                             index_content % {'error': ''}}
 
     file = request.files['file']
-    if not file.filename.endswith('.xml'):
+    if file.filename.endswith('.xml.gz'):
+        ext = '.xml.gz'
+    elif not file.filename.endswith('.xml'):
         error_msg = ('Podany plik nie jest plikiem .xml stworzonym'
                      ' przez jogger.pl.')
+    else:
+        ext = '.gz'
 
     if error_msg:
         error = '''
@@ -145,7 +149,7 @@ def index():
                                             index_content % {'error': error}}
 
     fuuid = str(uuid.uuid4())
-    filename = os.path.join(app.config['UPLOAD_FOLDER'], fuuid + '.xml')
+    filename = os.path.join(app.config['UPLOAD_FOLDER'], fuuid + ext)
     file.save(filename)
 
     logfuuid = str(uuid.uuid4())
