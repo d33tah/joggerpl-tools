@@ -184,4 +184,11 @@ def show(path):
     return response
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5001)
+    # NOTE: do NOT change this from 127.0.0.1 to 0.0.0.0! This is not the way!
+    #
+    # This is because of security reasons. I do NOT want the users to send over
+    # their XML data over an unencrypted channel because it can contain a lot
+    # of private data. This means that I want admins to use an SSL reverse
+    # proxy - now that letsencrypt.org basically gives away certificates for
+    # free, there's no excuse for not doing that.
+    app.run(host='127.0.0.1', port=5001)
