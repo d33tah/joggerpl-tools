@@ -26,7 +26,7 @@ PARSE_TIMEOUT = 2
 
 
 # http://www.underengineering.com/2014/07/24/monkey-patching-considered-harmless/
-# This is a DNS cache we introduce to avoid a thousands of lookups.
+# This is a DNS cache we introduce to avoid thousands of lookups.
 def memoize(f):
     global cache
     cache = {}
