@@ -12,7 +12,6 @@ import time
 
 MAIN_PY_PATH = '/home/d33tah/workspace/joggerpl-tools/wordpress-import/main.py'
 UPLOAD_FOLDER = '/var/tmp/'
-ALLOWED_EXTENSIONS = set(['xml'])
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
