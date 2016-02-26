@@ -102,7 +102,10 @@ def index():
             </div>
 
             <div class="form-group">
-                <label for="file">Plik wyeksportowany przez jogger.pl:</label>
+                <label for="file">Plik wyeksportowany przez jogger.pl
+                (pobierz
+                <a href="https://login.jogger.pl/options/export/">TUTAJ</a>):
+                </label>
                 <input id="file" type="file" name="file">
             </div>
             <p>
