@@ -170,7 +170,7 @@ def index():
         filename
         ], bufsize=1, stderr=subprocess.STDOUT, stdout=logf, preexec_fn=pfn,
         env=subprocess_environment)
-    # sleep for three seconds so we have a change of showing something in a log
+    # sleep for three seconds so we have a chance of showing something in a log
     time.sleep(3.0)
     return redirect('/show/%s.txt' % logfuuid)
 
