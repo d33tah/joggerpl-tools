@@ -115,7 +115,9 @@ def index():
                     (poziom 1 i powyżej). Jeżeli nie chcesz ich przesyłać na
                     ten serwer, użyj terminalowej wersji tej strony,</li>
                 <li>Po zaimportowaniu wpisów należy
-                    <strong>zmienić hasło</strong> do Wordpressa.</li>
+                    <strong>zmienić hasło</strong> do Wordpressa,</li>
+                <li>Lista "co działa, a co nie?" dostępna jest
+                    <a href="https://github.com/d33tah/joggerpl-tools/tree/master/wordpress-import/">TUTAJ</a>.</li>
             </ul>
             </p>
 
