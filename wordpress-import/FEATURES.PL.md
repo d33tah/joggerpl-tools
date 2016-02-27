@@ -13,7 +13,7 @@ Na ten moment skrypt nie obsługuje:
 * tagów,
 * trybów komentowania (wszystkie wpisy mają tryb komentowania ustawiony na
 "dostępny dla zalogowanych lub anonimowych użytkowników"),
-* poprawiania linków do własnych artykułów,
+* automatycznego poprawiania linków do własnych artykułów,
 * usuwania dziwnych znaczków z plików XML.
 
 W razie wystąpienia niezrozumiałych błędów proszę o kontakt.
