@@ -42,7 +42,14 @@ socket.getaddrinfo = memoize(socket.getaddrinfo)
 class Main(object):
 
     def main(self, url, login, password, path):
-        self.client = wordpress_xmlrpc.Client(url, login, password)
+        try: 
+            self.client = wordpress_xmlrpc.Client(url, login, password)
+        except wordpress_xmlrpc.exceptions.ServerConnectionError as exc:
+            if '301 Moved Permanently' in exc.args[0]:
+                print("301 redirect, trying HTTPS protocol.")
+                ssl_url = url.replace('http://', 'https://')
+                self.client = wordpress_xmlrpc.Client(ssl_url, login, password)
+            
         # This is just to make sure that the credentials are OK before we jump
         # to XML parsing.
         self.client.call(wordpress_xmlrpc.methods.users.GetUsers())
