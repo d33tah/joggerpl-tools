@@ -45,7 +45,7 @@ class Main(object):
         try:
             self.client = wordpress_xmlrpc.Client(url, login, password)
         except wordpress_xmlrpc.exceptions.ServerConnectionError as exc:
-            if not '301 Moved Permanently' in exc.args[0]:
+            if '301 Moved Permanently' not in exc.args[0]:
                 raise
             print("301 redirect, trying HTTPS protocol.")
             ssl_url = url.replace('http://', 'https://')
