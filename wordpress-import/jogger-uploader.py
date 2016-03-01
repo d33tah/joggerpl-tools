@@ -138,7 +138,7 @@ def index():
         error_msg = ('Podany plik nie jest plikiem .xml stworzonym'
                      ' przez jogger.pl.')
     else:
-        ext = '.gz'
+        ext = '.xml'
 
     if error_msg:
         error = '''
