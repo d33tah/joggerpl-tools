@@ -117,7 +117,7 @@ def index():
                 <li>Po zaimportowaniu wpisów należy
                     <strong>zmienić hasło</strong> do Wordpressa,</li>
                 <li>Lista "co działa, a co nie?" dostępna jest
-                    <a href="https://github.com/d33tah/joggerpl-tools/tree/master/wordpress-import/">TUTAJ</a>.</li>
+                    <a href="https://github.com/d33tah/joggerpl-tools/blob/master/wordpress-import/FEATURES.PL.md">TUTAJ</a>.</li>
             </ul>
             </p>
 
