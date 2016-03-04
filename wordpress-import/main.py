@@ -79,6 +79,8 @@ class Main(object):
         post.title = entry.findall('./subject')[0].text
 
         body = entry.findall('./body')[0].text
+        if body is None:
+            body = ''
 
         if '{geshi' in body:
             body = re.sub('{geshi lang=([^ ]+).*?}(.*?){/geshi}',
