@@ -52,6 +52,11 @@ class Main(object):
             return wordpress_xmlrpc.Client(ssl_url, login, password)
 
     def main(self, url, login, password, path):
+        if not url.endswith('xmlrpc.php'):
+            print("[EN] WARNING: URL doesn't end with xmlrpc.php. Perhaps you "
+                  "forgot to put it here?\n"
+                  "[PL] OSTREZENIE: URL nie konczy sie na xmlrpc.php. To dosc "
+                  "nietypowe - moze to pomylka?\n")
         # This is just to make sure that the credentials are OK before we jump
         # to XML parsing.
         self._login(url, login, password)
