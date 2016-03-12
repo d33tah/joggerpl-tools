@@ -59,7 +59,7 @@ class Main(object):
                   "nietypowe - moze to pomylka?\n")
         # This is just to make sure that the credentials are OK before we jump
         # to XML parsing.
-        self._login(url, login, password)
+        self.client = self._login(url, login, password)
 
         # Parse the XML. Give 2 seconds for parsing to prevent abuse.
         signal.alarm(PARSE_TIMEOUT)
