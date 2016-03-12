@@ -87,7 +87,9 @@ def index():
         %(error)s
         <form action="" method=post enctype=multipart/form-data>
             <div class="form-group">
-                <label for="url">Adres bloga Wordpress:</label>
+                <label for="url">Adres bloga Wordpress (z końcówką
+                                 /xmlrpc.php, chyba że plik od XMLRPC jest
+                                 przeniesiony gdzie indziej):</label>
                 <input id="url" name="url" type="url" class="form-control"
                     placeholder="http://blog.example.com/xmlrpc.php">
             </div>
