@@ -11,6 +11,7 @@ import resource
 import time
 
 MAIN_PY_PATH = '/home/d33tah/workspace/joggerpl-tools/wordpress-import/main.py'
+MAIN_PY_PATH = '/mnt/sda/d33tah/workspace/joggerpl-tools/wordpress-import/main.py'
 UPLOAD_FOLDER = '/var/tmp/'
 
 app = Flask(__name__)
